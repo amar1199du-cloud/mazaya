@@ -5,111 +5,100 @@
 <title>مزايا - نظام المروجين</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
-<style>body{font-family:Cairo;background:#f3f0ff}.no-scrollbar::-webkit-scrollbar{display:none}</style>
+<style>
+body{font-family:Cairo;background:#f3f0ff}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.glass{backdrop-filter:blur(20px);background:rgba(255,255,255,0.95)}
+</style>
 </head>
 <body class="bg-[#f3f0ff]">
-<div class="max-w-[430px] mx-auto bg-[#f3f0ff] min-h-screen pb-[80px] relative overflow-hidden">
+<div class="max-w-[430px] mx-auto bg-[#f3f0ff] min-h-screen pb-[80px] relative">
 
-<div id="loginScreen" class="fixed inset-0 z-[999] bg-[#7c3aed] flex items-center justify-center p-5">
-<div class="bg-white w-full max-w-[340px] rounded-[32px] p-7 shadow-2xl text-center">
-<div class="w-20 h-20 bg-[#2e1065] rounded-[20px] mx-auto flex items-center justify-center text-white font-black text-3xl">M</div>
-<div class="font-black text-[22px] mt-4 text-[#1e1b4b]">نظام المروجين</div>
-<div class="text-[13px] text-gray-400 mt-1">سجل دخولك كمروج</div>
-<div class="mt-6 space-y-3 text-right">
-<label class="text-[11px] font-bold text-[#1e1b4b]">اسمك</label>
-<input id="promoterName" type="text" placeholder="مثال: عمار" class="w-full p-4 bg-[#f8f7ff] border-2 border-transparent focus:border-[#7c3aed] rounded-2xl outline-none text-sm">
-<label class="text-[11px] font-bold text-[#1e1b4b]">رقمك</label>
-<input id="promoterPhone" type="tel" placeholder="0770..." class="w-full p-4 bg-[#f8f7ff] border-2 border-transparent focus:border-[#7c3aed] rounded-2xl outline-none text-sm">
-<button onclick="doLogin()" id="loginBtn" class="w-full mt-2 bg-[#2e1065] text-white py-4 rounded-2xl font-black text-[14px]">دخول للمتجر 🚀</button>
+<!-- دخول فخم جداً -->
+<div id="loginScreen" style="position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 30% 20%,#a78bfa 0%,#7c3aed 40%,#4c1d95 100%);display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
+<!-- دوائر خلفية -->
+<div style="position:absolute;width:300px;height:300px;background:rgba(255,255,255,0.1);border-radius:50%;top:-50px;left:-50px;animation:float 4s ease-in-out infinite;"></div>
+<div style="position:absolute;width:200px;height:200px;background:rgba(255,255,255,0.08);border-radius:50%;bottom:50px;right:-30px;animation:float 5s ease-in-out infinite reverse;"></div>
+
+<div class="glass" style="width:100%;max-width:360px;border-radius:36px;padding:32px 28px;box-shadow:0 25px 80px rgba(0,0,0,0.25),0 0 0 1px rgba(255,255,255,0.5) inset;position:relative;">
+<!-- لوجو متحرك -->
+<div style="text-align:center;">
+<div style="width:80px;height:80px;background:linear-gradient(135deg,#2e1065 0%,#7c3aed 100%);border-radius:22px;margin:0 auto;display:flex;align-items:center;justify-content:center;color:white;font-weight:900;font-size:36px;box-shadow:0 10px 30px rgba(124,58,237,0.4);animation:float 3s ease-in-out infinite;">M</div>
+<div style="font-weight:900;font-size:26px;margin-top:16px;color:#1e1b4b;letter-spacing:-0.5px;">مزايا</div>
+<div style="display:inline-block;background:linear-gradient(90deg,#7c3aed,#a78bfa);color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px;">نظام المروجين الذكي</div>
+<div style="font-size:12px;color:#6b7280;margin-top:12px;line-height:1.6;">ادخل وابدأ تربح من 500+ منتج<br>بأقل ربح انت تحدده 💰</div>
+</div>
+
+<div style="margin-top:28px;">
+<div style="position:relative;margin-bottom:14px;">
+<div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;">👤</div>
+<input id="promoterName" type="text" placeholder="اسمك الكامل" style="width:100%;padding:15px 44px 15px 16px;background:#f8f7ff;border:2px solid transparent;border-radius:18px;outline:none;font-size:14px;font-weight:600;text-align:right;transition:all 0.3s;" onfocus="this.style.borderColor='#7c3aed';this.style.background='white';this.style.boxShadow='0 0 0 4px rgba(124,58,237,0.1)'" onblur="this.style.borderColor='transparent';this.style.background='#f8f7ff';this.style.boxShadow='none'">
+</div>
+
+<div style="position:relative;margin-bottom:20px;">
+<div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;">📱</div>
+<input id="promoterPhone" type="tel" placeholder="رقم الواتساب 0770..." style="width:100%;padding:15px 44px 15px 16px;background:#f8f7ff;border:2px solid transparent;border-radius:18px;outline:none;font-size:14px;font-weight:600;text-align:right;transition:all 0.3s;" onfocus="this.style.borderColor='#7c3aed';this.style.background='white';this.style.boxShadow='0 0 0 4px rgba(124,58,237,0.1)'" onblur="this.style.borderColor='transparent';this.style.background='#f8f7ff';this.style.boxShadow='none'">
+</div>
+
+<button onclick="doLogin()" style="width:100%;background:linear-gradient(135deg,#2e1065 0%,#7c3aed 100%);color:white;padding:16px;border-radius:18px;font-weight:900;font-size:15px;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(124,58,237,0.35);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 15px 40px rgba(124,58,237,0.45)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 10px 30px rgba(124,58,237,0.35)'">
+<span>دخول للمتجر</span><span style="font-size:18px;">🚀</span>
+</button>
+
+<div style="display:flex;gap:8px;margin-top:16px;">
+<div style="flex:1;background:#f0fdf4;border:1px solid #dcfce7;border-radius:14px;padding:10px;text-align:center;"><div style="font-size:16px;">⚡</div><div style="font-size:9px;font-weight:700;color:#15803d;margin-top:2px;">دخول فوري</div></div>
+<div style="flex:1;background:#fef3ff;border:1px solid #f5d0fe;border-radius:14px;padding:10px;text-align:center;"><div style="font-size:16px;">🔒</div><div style="font-size:9px;font-weight:700;color:#a21caf;margin-top:2px;">آمن ومحمي</div></div>
+<div style="flex:1;background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:10px;text-align:center;"><div style="font-size:16px;">💎</div><div style="font-size:9px;font-weight:700;color:#1d4ed8;margin-top:2px;">500+ منتج</div></div>
+</div>
+
+<div style="text-align:center;margin-top:14px;font-size:10px;color:#9ca3af;">بالدخول انت توافق على شروط الاستخدام</div>
 </div>
 </div>
 </div>
 
+<!-- المتجر -->
 <div class="bg-gradient-to-b from-[#a78bfa] to-[#7c3aed] p-4 pb-6 rounded-b-[28px]">
 <div class="flex justify-between items-center">
 <button onclick="logout()" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white">🚪</button>
-<div class="text-right text-white flex items-center gap-3"><div><div id="displayName" class="font-black text-[16px]">مرحباً</div><div id="displayPhone" class="text-[11px] opacity-70"></div></div><div class="w-9 h-9 bg-white text-[#7c3aed] rounded-xl flex items-center justify-center font-black text-xs">M</div></div>
+<div class="text-right text-white flex items-center gap-3"><div><div id="displayName" class="font-black text-[15px]">مرحباً</div><div id="displayPhone" class="text-[11px] opacity-80"></div></div><div class="w-9 h-9 bg-white text-[#7c3aed] rounded-xl flex items-center justify-center font-black text-xs">M</div></div>
 </div>
 <div class="mt-4 bg-white rounded-full flex items-center px-4 py-3.5 shadow-xl"><input id="search" oninput="doFilter()" placeholder="ابحث بين 500 منتج..." class="flex-1 bg-transparent outline-none text-[13px]"><span>🔍</span></div>
 </div>
-
-<div class="px-3 mt-4"><b class="text-[#1e1b4b] text-[13px]">الفئات</b><div class="flex gap-2 mt-3 overflow-auto no-scrollbar pb-2" id="cats"></div></div>
+<div class="px-3 mt-4"><b class="text-[#1e1b4b] text-[13px]">الفئات</b><div class="flex gap-2 mt-3 overflow-auto pb-2" id="cats"></div></div>
 <div class="px-3 mt-4"><div class="flex justify-between"><div class="font-black text-[#1e1b4b] text-[13px]">المنتجات</div><div id="productCount" class="text-[10px] bg-white px-3 py-1 rounded-full font-bold">0</div></div><div class="grid grid-cols-2 gap-3 mt-3" id="grid"></div></div>
-
-<div class="fixed bottom-0 w-full max-w-[430px] left-1/2 -translate-x-1/2 bg-white rounded-t-[22px] flex justify-around py-3 shadow z-30">
-<button class="flex flex-col items-center px-8 py-1.5 bg-[#2e1065] text-white rounded-xl"><span>🏠</span><span class="text-[10px]">الرئيسية</span></button>
-<button onclick="openCart()" class="flex flex-col items-center px-8 py-1.5 bg-[#f3f0ff] text-[#2e1065] rounded-xl border"><span>🛒</span><span class="text-[10px] font-bold">السلة (<span id="cq2">0</span>)</span></button>
-</div>
-
-<div id="drawer" class="fixed inset-0 bg-black/50 z-[100] hidden"><div class="absolute bottom-0 w-full max-w-[430px] left-1/2 -translate-x-1/2 bg-white rounded-t-[28px] p-4 max-h-[90vh] flex flex-col">
-<div class="flex justify-between font-black text-[15px]"><span>سلة الطلب (<span id="cq">0</span>)</span><span onclick="closeCart()" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer">✕</span></div>
-<div id="clist" class="flex-1 overflow-auto mt-3 space-y-3"></div>
-<div class="border-t pt-3 mt-3 bg-[#f9f8ff] p-3 rounded-2xl">
-<div class="font-black text-[12px] mb-2">بيانات الزبون:</div>
-<input id="cname" placeholder="اسم الزبون *" class="w-full p-3 border rounded-xl text-xs mb-2">
-<input id="cphone" placeholder="رقم الزبون *" class="w-full p-3 border rounded-xl text-xs mb-2">
-<input id="caddr" placeholder="عنوان الزبون *" class="w-full p-3 border rounded-xl text-xs">
-<div class="flex justify-between font-black mt-3 text-[12px]"><span>جملة:</span><span id="totWhole">0</span></div>
-<div class="flex justify-between font-black text-[12px]"><span>بيع:</span><span id="totSell" class="text-[#7c3aed]">0</span></div>
-<div class="flex justify-between font-black text-[14px] bg-green-50 p-2.5 rounded-xl mt-1"><span>ربحك:</span><span id="totProfit" class="text-green-600">0</span></div>
-<button onclick="sendWA()" class="w-full mt-3 bg-[#25D366] text-white py-4 rounded-full font-black text-sm">ارسال واتساب ✅</button>
-</div>
-</div></div>
-
+<div class="fixed bottom-0 w-full max-w-[430px] left-1/2 -translate-x-1/2 bg-white rounded-t-[22px] flex justify-around py-3 shadow z-30"><button class="flex flex-col items-center px-8 py-1.5 bg-[#2e1065] text-white rounded-xl"><span>🏠</span><span class="text-[10px]">الرئيسية</span></button><button onclick="openCart()" class="flex flex-col items-center px-8 py-1.5 bg-[#f3f0ff] text-[#2e1065] rounded-xl border"><span>🛒</span><span class="text-[10px] font-bold">السلة (<span id="cq2">0</span>)</span></button></div>
+<div id="drawer" class="fixed inset-0 bg-black/50 z-[100] hidden"><div class="absolute bottom-0 w-full max-w-[430px] left-1/2 -translate-x-1/2 bg-white rounded-t-[28px] p-4 max-h-[90vh] flex flex-col"><div class="flex justify-between font-black"><span>السلة (<span id="cq">0</span>)</span><span onclick="closeCart()" class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center cursor-pointer">✕</span></div><div id="clist" class="flex-1 overflow-auto mt-3 space-y-3"></div><div class="border-t pt-3 mt-3 bg-[#f9f8ff] p-3 rounded-2xl"><input id="cname" placeholder="اسم الزبون *" class="w-full p-3 border rounded-xl text-xs mb-2"><input id="cphone" placeholder="رقم الزبون *" class="w-full p-3 border rounded-xl text-xs mb-2"><input id="caddr" placeholder="عنوان الزبون *" class="w-full p-3 border rounded-xl text-xs"><div class="flex justify-between font-black mt-3 text-[12px]"><span>جملة:</span><span id="totWhole">0</span></div><div class="flex justify-between font-black text-[12px]"><span>بيع:</span><span id="totSell" class="text-[#7c3aed]">0</span></div><div class="flex justify-between font-black text-[14px] bg-green-50 p-2.5 rounded-xl mt-1"><span>ربحك:</span><span id="totProfit" class="text-green-600">0</span></div><button onclick="sendWA()" class="w-full mt-3 bg-[#25D366] text-white py-4 rounded-full font-black text-sm">ارسال واتساب ✅</button></div></div></div>
 </div>
 <script>
 const WA="9647708265111";
 const CATEGORIES=["جميع المنتجات","الكترونيات","اجهزة المنزل","اجهزة المطبخ","منتجات العنايه","العاب","ادوات السيارات","عدد وادوات","ادوات رياضية","اثاث","انارة و اضاءة","ادوات منزلية","ادوات مطبخ"];
 let active="جميع المنتجات";
-let defaultProducts=[
-{id:1,n:"سماعات بلوتوث Pro Max",whole:25000,sell:38000,c:"الكترونيات",i:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",s:120,minProfit:3000,maxProfit:15000},
-{id:2,n:"ميزان مطبخ رقمي",whole:16500,sell:25000,c:"اجهزة المطبخ",i:"https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400",s:85,minProfit:3000,maxProfit:10000},
-{id:3,n:"مصباح LED ذكي",whole:12000,sell:20000,c:"انارة و اضاءة",i:"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400",s:200,minProfit:2000,maxProfit:8000},
-];
+let defaultProducts=[{id:1,n:"سماعات بلوتوث Pro Max",whole:25000,sell:38000,c:"الكترونيات",i:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",minProfit:3000,maxProfit:15000}];
 let customProducts = JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");
 let products = [...defaultProducts,...customProducts];
 let cart=[];
-
-function checkLogin(){let n=localStorage.getItem("mazaya_promoter_name");let p=localStorage.getItem("mazaya_promoter_phone");if(n&&n.trim()!==""){document.getElementById("loginScreen").style.display="none";document.getElementById("displayName").innerText="مرحباً، "+n;document.getElementById("displayPhone").innerText=p||"";return true;}else{document.getElementById("loginScreen").style.display="flex";return false;}}
-function doLogin(){let n=document.getElementById("promoterName").value.trim();let p=document.getElementById("promoterPhone").value.trim();if(!n){alert("اكتب اسمك");return;}localStorage.setItem("mazaya_promoter_name",n);localStorage.setItem("mazaya_promoter_phone",p);document.getElementById("loginBtn").innerText="تم ✓";setTimeout(()=>checkLogin(),300);}
-function logout(){localStorage.removeItem("mazaya_promoter_name");localStorage.removeItem("mazaya_promoter_phone");checkLogin();}
-
+function doLogin(){
+let n=document.getElementById("promoterName").value.trim();
+let p=document.getElementById("promoterPhone").value.trim();
+if(!n){document.getElementById("promoterName").style.borderColor="red";alert("اكتب اسمك حبيبي ❤️");return;}
+try{localStorage.setItem("mazaya_promoter_name",n);localStorage.setItem("mazaya_promoter_phone",p);}catch(e){}
+document.getElementById("displayName").innerText="مرحباً، "+n;
+document.getElementById("displayPhone").innerText=p;
+document.getElementById("loginScreen").style.display="none";
+}
+function checkLogin(){try{let n=localStorage.getItem("mazaya_promoter_name");let p=localStorage.getItem("mazaya_promoter_phone");if(n&&n.length>1){document.getElementById("displayName").innerText="مرحباً، "+n;document.getElementById("displayPhone").innerText=p||"";document.getElementById("loginScreen").style.display="none";}}catch(e){}}
+function logout(){try{localStorage.removeItem("mazaya_promoter_name");localStorage.removeItem("mazaya_promoter_phone");}catch(e){}document.getElementById("promoterName").value="";document.getElementById("promoterPhone").value="";document.getElementById("loginScreen").style.display="flex";}
 function renderCats(){document.getElementById("cats").innerHTML=CATEGORIES.map(x=>`<button onclick="setCat('${x}')" class="${active===x?'bg-[#2e1065] text-white':'bg-white text-gray-600 border'} px-4 py-2.5 rounded-full text-[11px] font-bold whitespace-nowrap">${x}</button>`).join("")}
 function setCat(x){active=x;renderCats();doFilter()}
-
-function render(list){
-document.getElementById("productCount").innerText=list.length+" منتج";
-document.getElementById("grid").innerHTML=list.map(pr=>`
-<div class="bg-white rounded-[18px] p-3 border shadow-sm">
-<img src="${pr.i}" class="w-full h-28 object-contain rounded-xl">
-<div class="mt-2 font-bold text-[11px] text-[#1e1b4b] h-8 overflow-hidden">${pr.n}</div>
-<div class="mt-2 bg-[#f9f8ff] p-2 rounded-xl border">
-<div class="text-[9px] text-gray-500">جملة: <b>${pr.whole.toLocaleString()}</b></div>
-<div class="text-[9px] text-[#7c3aed] mt-1">سعر البيع:</div>
-<input type="number" value="${pr.sell}" onchange="updateSell(${pr.id},this.value)" class="w-full bg-white border-2 border-[#ece8ff] focus:border-[#7c3aed] rounded-lg p-1.5 text-[11px] font-black text-[#7c3aed] outline-none">
-<div class="flex gap-1 mt-2"><span class="bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full text-[8px] font-bold">ادنى ${(pr.minProfit||3000).toLocaleString()}</span><span class="bg-green-100 text-green-600 px-1.5 py-0.5 rounded-full text-[8px] font-bold">اكثر ${(pr.maxProfit||15000).toLocaleString()}</span></div>
-<div class="text-[8px] text-[#7c3aed] mt-1">مسموح: ${(pr.whole+(pr.minProfit||3000)).toLocaleString()} - ${(pr.whole+(pr.maxProfit||15000)).toLocaleString()}</div>
-<div class="text-[9px] text-green-600 mt-1 font-bold">ربح ${(pr.sell-pr.whole).toLocaleString()}</div>
-</div>
-<button onclick="add(${pr.id})" class="w-full mt-2 bg-[#2e1065] text-white py-2.5 rounded-full text-[11px] font-bold">إضافة +</button>
-</div>`).join("")||"<div class='col-span-2 text-center py-10 text-gray-400 text-xs'>ماكو منتجات<br><a href='admin.html' class='text-[#7c3aed] font-bold underline'>افتح لوحة التحكم</a></div>";
-}
-
-function updateSell(id,val){
-let pr=products.find(p=>p.id==id); if(!pr) return;
-let newSell=parseInt(val)||pr.whole;
-let minP=pr.minProfit||3000; let maxP=pr.maxProfit||15000;
-let minAllowed=pr.whole+minP; let maxAllowed=pr.whole+maxP;
-if(newSell<minAllowed){alert("⚠️ الادنى: ما تكدر تبيع اقل من "+minAllowed.toLocaleString()+" د.ع\nاقل ربح "+minP.toLocaleString()); newSell=minAllowed; event.target.value=minAllowed;}
-if(newSell>maxAllowed){alert("⚠️ الاكثر: ما تكدر تبيع اكثر من "+maxAllowed.toLocaleString()+" د.ع\nاكثر ربح "+maxP.toLocaleString()); newSell=maxAllowed; event.target.value=maxAllowed;}
-pr.sell=newSell;
-let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");
-let f=custom.find(x=>x.id==id); if(f){f.sell=pr.sell; localStorage.setItem("mazaya_custom_products",JSON.stringify(custom));}
-up(); doFilter();
-}
-
-function doFilter(){customProducts = JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]"); products = [...defaultProducts,...customProducts]; let q=document.getElementById("search").value.toLowerCase(); let f=products.filter(p=>(active==="جميع المنتجات"||p.c===active)&&p.n.toLowerCase().includes(q)); render(f);}
-function add(id){let ex=cart.find(c=>c.id==id); if(ex)ex.q++; else cart.push({id,q:1}); up(); openCart();}
-function up(){let tq=cart.reduce((s,c)=>s+c.q,0); document.getElementById("cq").innerText=tq; document.getElementById("cq2").innerText=tq; let whole=0,sell=0; document.getElementById("clist").innerHTML=cart.map(c=>{let p=products.find(x=>x.id==c.id); if(!p) return ""; whole+=p.whole*c.q; sell+=p.sell*c.q; return `<div class="bg-[#f9f8ff] p-2.5 rounded-xl border flex gap-2"><img src="${p.i}" class="w-14 h-14 object-contain bg-white rounded-xl border"><div class="flex-1 text-[11px]"><div class="font-bold">${p.n}</div><div class="flex items-center gap-2 mt-1"><input type="number" value="${c.q}" min="1" onchange="cart.find(x=>x.id==${p.id}).q=parseInt(this.value)||1;up()" class="w-12 border-2 rounded-lg p-1 text-center font-bold"><span class="text-[10px]">كمية</span></div><div class="mt-1 text-[10px]">جملة ${p.whole.toLocaleString()} | بيع <b class="text-[#7c3aed]">${p.sell.toLocaleString()}</b></div></div><button onclick="cart=cart.filter(x=>x.id!=${p.id});up()" class="w-7 h-7 bg-red-50 text-red-500 rounded-full">✕</button></div>`}).join("")||"<div class='text-center text-gray-400 py-6 text-xs'>السلة فارغة</div>"; document.getElementById("totWhole").innerText=whole.toLocaleString()+" د.ع"; document.getElementById("totSell").innerText=sell.toLocaleString()+" د.ع"; document.getElementById("totProfit").innerText=(sell-whole).toLocaleString()+" د.ع";}
-function openCart(){doFilter(); document.getElementById("drawer").classList.remove("hidden")}function closeCart(){document.getElementById("drawer").classList.add("hidden")}
-function sendWA(){if(!cart.length){alert("السلة فارغة");return;}let cn=document.getElementById("cname").value.trim();let cp=document.getElementById("cphone").value.trim();let ca=document.getElementById("caddr").value.trim();if(!cn||!cp||!ca){alert("املأ بيانات الزبون");return;}let pn=localStorage.getItem("mazaya_promoter_name")||"مروج";let pp=localStorage.getItem("mazaya_promoter_phone")||"";let msg=`*طلب جديد - مزايا*%0A%0A*اسم المروج:* ${pn}%0A*رقم المروج:*
+function render(list){document.getElementById("productCount").innerText=list.length+" منتج";document.getElementById("grid").innerHTML=list.map(pr=>`<div class="bg-white rounded-[18px] p-3 border shadow-sm"><img src="${pr.i}" class="w-full h-28 object-contain rounded-xl"><div class="mt-2 font-bold text-[11px] text-[#1e1b4b] h-8 overflow-hidden">${pr.n}</div><div class="mt-2 bg-[#f9f8ff] p-2 rounded-xl border"><div class="text-[9px] text-gray-500">جملة: <b>${pr.whole.toLocaleString()}</b></div><input type="number" value="${pr.sell}" onchange="updateSell(${pr.id},this.value)" class="w-full mt-1 bg-white border-2 border-[#ece8ff] rounded-lg p-1.5 text-[11px] font-black text-[#7c3aed] outline-none"><div class="flex gap-1 mt-1"><span class="bg-red-100 text-red-600 px-1.5 py-0.5 rounded-full text-[8px] font-bold">ادنى ${(pr.minProfit||3000).toLocaleString()}</span><span class="bg-green-100 text-green-600 px-1.5 py-0.5 rounded-full text-[8px] font-bold">اكثر ${(pr.maxProfit||15000).toLocaleString()}</span></div></div><button onclick="add(${pr.id})" class="w-full mt-2 bg-[#2e1065] text-white py-2.5 rounded-full text-[11px] font-bold">إضافة +</button></div>`).join("");}
+function updateSell(id,val){let pr=products.find(p=>p.id==id);if(!pr)return;let newSell=parseInt(val)||pr.whole;let minP=pr.minProfit||3000;let maxP=pr.maxProfit||15000;let minAllowed=pr.whole+minP;let maxAllowed=pr.whole+maxP;if(newSell<minAllowed){alert("⚠️ اقل سعر "+minAllowed.toLocaleString());newSell=minAllowed;event.target.value=minAllowed;}if(newSell>maxAllowed){alert("⚠️ اعلى سعر "+maxAllowed.toLocaleString());newSell=maxAllowed;event.target.value=maxAllowed;}pr.sell=newSell;up();doFilter();}
+function doFilter(){customProducts = JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");products = [...defaultProducts,...customProducts];let q=document.getElementById("search").value.toLowerCase();let f=products.filter(p=>(active==="جميع المنتجات"||p.c===active)&&p.n.toLowerCase().includes(q));render(f);}
+function add(id){let ex=cart.find(c=>c.id==id);if(ex)ex.q++;else cart.push({id,q:1});up();openCart();}
+function up(){let tq=cart.reduce((s,c)=>s+c.q,0);document.getElementById("cq").innerText=tq;document.getElementById("cq2").innerText=tq;let whole=0,sell=0;document.getElementById("clist").innerHTML=cart.map(c=>{let p=products.find(x=>x.id==c.id);if(!p)return"";whole+=p.whole*c.q;sell+=p.sell*c.q;return `<div class="bg-[#f9f8ff] p-2.5 rounded-xl border flex gap-2"><img src="${p.i}" class="w-14 h-14 object-contain bg-white rounded-xl border"><div class="flex-1 text-[11px]"><div class="font-bold">${p.n}</div><div class="flex items-center gap-2 mt-1"><input type="number" value="${c.q}" min="1" onchange="cart.find(x=>x.id==${p.id}).q=parseInt(this.value)||1;up()" class="w-12 border-2 rounded-lg p-1 text-center font-bold"></div></div><button onclick="cart=cart.filter(x=>x.id!=${p.id});up()" class="w-7 h-7 bg-red-50 text-red-500 rounded-full">✕</button></div>`}).join("")||"<div class='text-center text-gray-400 py-6 text-xs'>السلة فارغة</div>";document.getElementById("totWhole").innerText=whole.toLocaleString()+" د.ع";document.getElementById("totSell").innerText=sell.toLocaleString()+" د.ع";document.getElementById("totProfit").innerText=(sell-whole).toLocaleString()+" د.ع";}
+function openCart(){doFilter();document.getElementById("drawer").classList.remove("hidden")}function closeCart(){document.getElementById("drawer").classList.add("hidden")}
+function sendWA(){if(!cart.length){alert("السلة فارغة");return;}let cn=document.getElementById("cname").value.trim();let cp=document.getElementById("cphone").value.trim();let ca=document.getElementById("caddr").value.trim();if(!cn||!cp||!ca){alert("املأ بيانات الزبون");return;}let pn=localStorage.getItem("mazaya_promoter_name")||"مروج";let pp=localStorage.getItem("mazaya_promoter_phone")||"";let msg=`*طلب جديد - مزايا*%0A*المروج:* ${pn} - ${pp}%0A----------------%0A`;cart.forEach((c,i)=>{let p=products.find(x=>x.id==c.id);if(!p)return;msg+=`%0A*${i+1}. ${p.n}*%0A📦 ${c.q} | 💰 ${p.whole} | 💵 ${p.sell}%0A`;});msg+=`%0A*الجملة:* ${document.getElementById("totWhole").innerText}%0A*البيع:* ${document.getElementById("totSell").innerText}%0A*الربح:* ${document.getElementById("totProfit").innerText}%0A%0A*الزبون:* ${cn} - ${cp} - ${ca}`;window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
+checkLogin();renderCats();render(products);
+document.getElementById("promoterName").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("promoterPhone").focus();});
+document.getElementById("promoterPhone").addEventListener("keydown",e=>{if(e.key==="Enter")doLogin();});
+</script>
+</body>
+</html>
