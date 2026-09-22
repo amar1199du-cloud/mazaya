@@ -2,149 +2,103 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>مزايا | منصة التجارة الهيبة</title>
+<title>مزايا | HEBA STORE</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
-*{font-family:'Cairo',sans-serif}
-body{background:#0a0a0f;overflow-x:hidden}
-.glass{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}
-.card-heba{background:linear-gradient(145deg,#1a1a24 0%,#15151f 100%);border:1px solid rgba(124,58,237,0.15);box-shadow:0 10px 40px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05);transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
-.card-heba:hover{transform:translateY(-6px) scale(1.02);border-color:rgba(124,58,237,0.4);box-shadow:0 20px 60px rgba(124,58,237,0.2),0 0 0 1px rgba(124,58,237,0.2)}
-.shine{position:relative;overflow:hidden}
-.shine::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.08) 50%,transparent 70%);transform:rotate(25deg) translateX(-100%);transition:transform 0.8s}
-.card-heba:hover.shine::after{transform:rotate(25deg) translateX(100%)}
-.text-gradient{background:linear-gradient(90deg,#a78bfa 0%,#7c3aed 50%,#ec4899 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+*{font-family:Cairo}body{background:#0a0a0f}.glass{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}
+.card-heba{background:linear-gradient(145deg,#1a1a24,#15151f);border:1px solid rgba(124,58,237,0.15);box-shadow:0 10px 40px rgba(0,0,0,0.4);transition:all 0.4s}.card-heba:hover{transform:translateY(-5px);border-color:rgba(124,58,237,0.4)}
+.text-gradient{background:linear-gradient(90deg,#a78bfa,#7c3aed,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .no-scrollbar::-webkit-scrollbar{display:none}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.float{animation:float 4s ease-in-out infinite}
 </style>
 </head>
 <body class="bg-[#0a0a0f] text-white">
 
-<!-- تسجيل دخول هيبة -->
-<div id="loginScreen" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" style="background:radial-gradient(120% 120% at 20% 10%,#1e1b4b 0%,#0f0a2e 30%,#0a0a0f 70%),radial-gradient(80% 80% at 80% 90%,#7c3aed22 0%,transparent 60%);">
-<div class="absolute inset-0 overflow-hidden"><div class="absolute w-[500px] h-[500px] bg-[#7c3aed]/20 rounded-full blur-[120px] -top-20 -right-20"></div><div class="absolute w-[400px] h-[400px] bg-[#ec4899]/15 rounded-full blur-[100px] -bottom-20 -left-20"></div></div>
-<div class="relative w-full max-w-[400px]">
-<div class="glass rounded-[32px] p-8 shadow-[0_30px_100px_rgba(124,58,237,0.3)]">
-<div class="text-center">
-<div class="w-[80px] h-[80px] mx-auto rounded-[22px] bg-gradient-to-br from-[#7c3aed] to-[#ec4899] flex items-center justify-center font-black text-[36px] shadow-[0_15px_40px_rgba(124,58,237,0.5)] float">M</div>
-<div class="mt-5 font-black text-[28px] tracking-tight">مـزايـا</div>
-<div class="text-gradient font-black text-[11px] tracking-[0.3em] mt-1">MAZAYA • B2B EMPIRE</div>
-<div class="mt-4 bg-white/[0.06] border border-white/10 rounded-2xl p-3">
-<div class="text-[12px] font-bold leading-6">منصة المروجين رقم #1 في العراق<br><span class="opacity-60 text-[11px]">اكثر من 500 منتج • ارباح فورية • توصيل لكل العراق</span></div>
-</div>
-</div>
-<div class="mt-7 space-y-4">
-<div><label class="text-[11px] font-bold opacity-70">👑 اسمك الكريم</label><input id="promoterName" class="w-full mt-2 p-4 bg-white/[0.06] border border-white/10 focus:border-[#7c3aed] focus:bg-white/[0.08] rounded-2xl outline-none text-[13px] font-bold transition-all" placeholder="مثال: مراد احمد"></div>
-<div><label class="text-[11px] font-bold opacity-70">📱 واتسابك</label><input id="promoterPhone" class="w-full mt-2 p-4 bg-white/[0.06] border border-white/10 focus:border-[#7c3aed] rounded-2xl outline-none text-[13px] font-bold" placeholder="0770 123 4567"></div>
-<button onclick="doLogin()" id="loginBtn" class="w-full mt-2 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-4 rounded-2xl font-black text-[14px] shadow-[0_15px_40px_rgba(124,58,237,0.4)] active:scale-[0.98] transition-all">دخول للإمبراطورية 🚀</button>
-<div class="grid grid-cols-3 gap-2 pt-2"><div class="bg-white/[0.04] border border-white/5 rounded-xl p-2.5 text-center"><div class="text-[16px]">⚡</div><div class="text-[8px] font-bold opacity-60 mt-1">دخول فوري</div></div><div class="bg-white/[0.04] border border-white/5 rounded-xl p-2.5 text-center"><div class="text-[16px]">💎</div><div class="text-[8px] font-bold opacity-60 mt-1">هيبة و فخامة</div></div><div class="bg-white/[0.04] border border-white/5 rounded-xl p-2.5 text-center"><div class="text-[16px]">🔒</div><div class="text-[8px] font-bold opacity-60 mt-1">محفوظ</div></div></div>
-</div>
-</div>
-<div class="text-center mt-4 text-[10px] opacity-30">© 2024 MAZAYA - صمم بهيبة</div>
+<!-- تسجيل دخول -->
+<div id="loginScreen" class="fixed inset-0 z-[9999] flex items-center justify-center p-4" style="background:radial-gradient(120% 120% at 20% 10%,#1e1b4b 0%,#0f0a2e 30%,#0a0a0f 70%);">
+<div class="w-full max-w-[400px] glass rounded-[32px] p-8">
+<div class="text-center"><div class="w-[80px] h-[80px] mx-auto rounded-[22px] bg-gradient-to-br from-[#7c3aed] to-[#ec4899] flex items-center justify-center font-black text-[36px]">M</div><div class="mt-5 font-black text-[26px]">مزايا</div><div class="text-gradient font-black text-[10px] tracking-[0.3em]">HEBA STORE</div></div>
+<div class="mt-7 space-y-4"><input id="promoterName" class="w-full p-4 bg-white/[0.06] border border-white/10 rounded-2xl text-[13px] font-bold outline-none focus:border-[#7c3aed]" placeholder="اسمك الكريم"><input id="promoterPhone" class="w-full p-4 bg-white/[0.06] border border-white/10 rounded-2xl text-[13px] font-bold outline-none" placeholder="0770 123 4567"><button onclick="doLogin()" id="loginBtn" class="w-full bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-4 rounded-2xl font-black text-[14px]">دخول للمتجر 🚀</button></div>
 </div>
 </div>
 
-<!-- متجر هيبة -->
-<div class="max-w-[480px] mx-auto min-h-screen relative pb-[100px] bg-[#0a0a0f]">
-<!-- هيدر هيبة -->
-<div class="sticky top-0 z-40 glass border-b border-white/5">
-<div class="p-4 flex justify-between items-center">
-<div class="flex items-center gap-3"><button onclick="logout()" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white/10 transition">🚪</button><div><div id="displayName" class="font-black text-[14px]">مرحباً</div><div id="displayPhone" class="text-[10px] opacity-50"></div></div></div>
-<div class="flex items-center gap-2"><div class="text-right"><div class="font-black text-[13px] text-gradient">مزايا</div><div class="text-[8px] opacity-40 tracking-[0.2em]">HEBA STORE</div></div><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#ec4899] flex items-center justify-center font-black shadow-lg">M</div></div>
+<div class="max-w-[480px] mx-auto min-h-screen pb-[100px] bg-[#0a0a0f]">
+<!-- هيدر -->
+<div class="sticky top-0 z-40 glass border-b border-white/5 p-4 flex justify-between items-center">
+<div class="flex items-center gap-3"><div><div id="displayName" class="font-black text-[14px]">أهلاً، عمار</div><div id="displayPhone" class="text-[10px] opacity-50"></div></div></div>
+<div class="flex items-center gap-2"><div class="font-black text-[12px] text-gradient">مزايا</div><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#ec4899] flex items-center justify-center font-black">M</div></div>
 </div>
-<!-- سيرج هيبة -->
-<div class="px-4 pb-4">
-<div class="relative group"><input id="search" oninput="doFilter()" placeholder="ابحث عن الهيبة... سماعة، ميزان، ساعة..." class="w-full p-4 pr-12 bg-[#15151f] border border-white/10 focus:border-[#7c3aed]/50 focus:bg-[#1a1a28] rounded-2xl outline-none text-[12px] font-bold transition-all"><div class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-[#7c3aed] to-[#ec4899] rounded-full flex items-center justify-center text-[12px] group-focus-within:scale-110 transition">🔍</div></div>
-</div>
-</div>
+<div class="px-4 pb-4 pt-2"><div class="relative"><input id="search" oninput="doFilter()" placeholder="إبحث عن الهيبة... سماعة، ميزان، ساعة..." class="w-full p-4 pr-12 bg-[#15151f] border border-white/10 rounded-2xl text-[12px] font-bold outline-none"><div class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-[#7c3aed] to-[#ec4899] rounded-full flex items-center justify-center text-[12px]">🔍</div></div></div>
 
-<!-- بنر هيبة -->
-<div class="px-4 mt-5">
-<div class="relative rounded-[24px] overflow-hidden p-5 bg-gradient-to-br from-[#1e1b4b] via-[#2e1065] to-[#7c3aed] border border-[#7c3aed]/30 shadow-[0_20px_60px_rgba(124,58,237,0.3)]">
-<div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-[30px]"></div>
-<div class="relative flex justify-between items-center"><div><div class="font-black text-[16px]">🔥 عروض الهيبة اليوم</div><div class="text-[11px] opacity-80 mt-1">خصم يوصل 40% + ربحك مضمون</div><div class="mt-3 inline-flex bg-white text-[#2e1065] px-3 py-1.5 rounded-full text-[10px] font-black">شحن مجاني لكل العراق 🚚</div></div><div class="text-5xl float">👑</div></div>
-</div>
-</div>
+<!-- بنر -->
+<div class="px-4 mt-3"><div class="rounded-[24px] p-5 bg-gradient-to-br from-[#2e1065] to-[#7c3aed] border border-[#7c3aed]/30 flex justify-between items-center"><div><div class="font-black text-[15px]">🔥 عروض الهيبة اليوم</div><div class="text-[11px] opacity-80 mt-1">خصم يوصل 40% + ربحك مضمون</div><div class="mt-3 inline-flex bg-white text-[#2e1065] px-3 py-1.5 rounded-full text-[10px] font-black">🚚 شحن مجاني لكل العراق</div></div><div class="text-5xl">👑</div></div></div>
 
-<!-- فئات هيبة -->
-<div class="px-4 mt-6"><div class="flex justify-between items-center mb-3"><div class="font-black text-[13px]">الفئات الملكية</div><span id="productCount" class="glass px-3 py-1 rounded-full text-[10px] font-bold">0 منتج</span></div><div id="cats" class="flex gap-2.5 overflow-auto no-scrollbar pb-2"></div></div>
+<div class="px-4 mt-6 flex justify-between"><div class="font-black text-[13px]">الفئات الملكية</div><span id="productCount" class="glass px-3 py-1 rounded-full text-[10px] font-bold">0 منتج هيبة</span></div>
+<div id="cats" class="flex gap-2.5 overflow-auto no-scrollbar px-4 mt-3 pb-2"></div>
+<div class="px-3 mt-5 grid grid-cols-2 gap-3.5" id="grid"></div>
 
-<!-- منتجات هيبة -->
-<div class="px-3 mt-6"><div id="grid" class="grid grid-cols-2 gap-3.5"></div></div>
-
-<!-- تاب بار هيبة -->
+<!-- تاب بار جديد - بدون ادارة -->
 <div class="fixed bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 z-40 p-3">
-<div class="glass rounded-[22px] flex justify-around items-center py-2.5 px-2 shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10">
-<button class="flex-1 flex flex-col items-center gap-1 py-2 bg-white text-black rounded-xl font-black shadow"><span class="text-[16px]">🏠</span><span class="text-[9px]">الرئيسية</span></button>
-<button onclick="openCart()" class="flex-1 flex flex-col items-center gap-1 py-2 text-white/60 hover:text-white transition"><span class="text-[16px]">🛒</span><span class="text-[9px] font-bold">السلة <span id="cq2" class="bg-[#7c3aed] text-white px-1.5 rounded-full">0</span></span></button>
-<a href="admin.html" class="flex-1 flex flex-col items-center gap-1 py-2 text-white/40 hover:text-white/80"><span class="text-[16px]">⚙️</span><span class="text-[9px]">الادارة</span></a>
+<div class="glass rounded-[22px] flex justify-around items-center py-2.5 px-2 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+<button class="flex-1 flex flex-col items-center gap-1 py-2 bg-white text-black rounded-xl font-black shadow"><span>🏠</span><span class="text-[9px]">الرئيسية</span></button>
+<button onclick="openCart()" class="flex-1 flex flex-col items-center gap-1 py-2 text-white/60"><span>🛒</span><span class="text-[9px] font-bold">السلة <span id="cq2" class="bg-[#7c3aed] text-white px-1.5 rounded-full">0</span></span></button>
+<button onclick="openSettings()" class="flex-1 flex flex-col items-center gap-1 py-2 text-white/60"><span>⚙️</span><span class="text-[9px] font-bold">الاعدادات</span></button>
 </div>
 </div>
 
-<!-- سلة هيبة -->
-<div id="drawer" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] hidden"><div class="absolute bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 bg-[#12121a] border-t border-white/10 rounded-t-[32px] p-5 max-h-[92vh] flex flex-col shadow-[0_-20px_80px_rgba(0,0,0,0.8)]">
+<!-- سلة -->
+<div id="drawer" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] hidden"><div class="absolute bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 bg-[#12121a] border-t border-white/10 rounded-t-[32px] p-5 max-h-[92vh] flex flex-col">
 <div class="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-5"></div>
-<div class="flex justify-between items-center"><div class="font-black text-[16px]">سلة الهيبة 👑 <span id="cq" class="bg-[#7c3aed] px-2.5 py-0.5 rounded-full text-[12px]">0</span></div><button onclick="closeCart()" class="w-9 h-9 glass rounded-full flex items-center justify-center">✕</button></div>
+<div class="flex justify-between"><div class="font-black">سلة الهيبة 👑 <span id="cq" class="bg-[#7c3aed] px-2.5 py-0.5 rounded-full text-[12px]">0</span></div><button onclick="closeCart()" class="w-9 h-9 glass rounded-full">✕</button></div>
 <div id="clist" class="flex-1 overflow-auto mt-5 space-y-3"></div>
-<div class="mt-4 space-y-3">
+<div class="mt-4 space-y-3"><div class="glass rounded-2xl p-4 space-y-3"><input id="cname" placeholder="👤 اسم الزبون *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none"><input id="cphone" placeholder="📱 رقم الزبون *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none"><input id="caddr" placeholder="📍 عنوان الزبون *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none"></div><div class="bg-gradient-to-br from-[#1e1b4b] to-[#2e1065] border border-[#7c3aed]/30 rounded-2xl p-4"><div class="flex justify-between text-[11px] opacity-70"><span>جملة</span><span id="totWhole">0</span></div><div class="flex justify-between text-[14px] font-black mt-3 bg-white text-black px-3 py-2 rounded-xl"><span>ربحك 💰</span><span id="totProfit">0</span></div></div><button onclick="sendWA()" class="w-full bg-[#25D366] py-4 rounded-2xl font-black text-[13px]">ارسال واتساب ✅</button></div>
+</div></div>
+
+<!-- اعدادات المروج - جديد -->
+<div id="settingsDrawer" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] hidden"><div class="absolute bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 bg-[#12121a] border-t border-white/10 rounded-t-[32px] p-6 max-h-[85vh] flex flex-col">
+<div class="w-12 h-1.5 bg-white/20 rounded-full mx-auto mb-6"></div>
+<div class="flex justify-between items-center mb-6"><div class="font-black text-[16px]">⚙️ اعدادات حسابك</div><button onclick="closeSettings()" class="w-9 h-9 glass rounded-full">✕</button></div>
+
+<div class="space-y-4 flex-1 overflow-auto">
+<div class="glass rounded-2xl p-5 text-center"><div class="w-16 h-16 mx-auto bg-gradient-to-br from-[#7c3aed] to-[#ec4899] rounded-full flex items-center justify-center font-black text-xl" id="avatarLetter">ع</div><div id="settingsName" class="font-black text-[16px] mt-3">عمار</div><div id="settingsPhone" class="text-[12px] opacity-50">0770...</div><div class="mt-3 inline-flex bg-green-500/20 border border-green-500/30 text-green-400 px-3 py-1 rounded-full text-[10px] font-bold">✅ حساب نشط - مروج معتمد</div></div>
+
 <div class="glass rounded-2xl p-4 space-y-3">
-<input id="cname" placeholder="👤 اسم الزبون *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 focus:border-[#7c3aed]/50 rounded-xl text-[12px] outline-none">
-<input id="cphone" placeholder="📱 رقم الزبون *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none">
-<input id="caddr" placeholder="📍 عنوان الزبون الكامل *" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none">
+<div class="font-bold text-[12px]">تعديل معلوماتك</div>
+<input id="editName" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none focus:border-[#7c3aed]" placeholder="اسمك">
+<input id="editPhone" class="w-full p-3.5 bg-[#1a1a28] border border-white/10 rounded-xl text-[12px] outline-none focus:border-[#7c3aed]" placeholder="رقمك">
+<button onclick="saveSettings()" class="w-full bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-3 rounded-xl font-black text-[12px]">حفظ التعديلات ✅</button>
 </div>
-<div class="bg-gradient-to-br from-[#1e1b4b] to-[#2e1065] border border-[#7c3aed]/30 rounded-2xl p-4">
-<div class="flex justify-between text-[11px] opacity-70"><span>مجموع الجملة</span><span id="totWhole">0</span></div>
-<div class="flex justify-between text-[11px] mt-2"><span>مجموع البيع</span><span id="totSell" class="font-bold text-[#a78bfa]">0</span></div>
-<div class="flex justify-between text-[14px] font-black mt-3 bg-white text-black px-3 py-2 rounded-xl"><span>ربحك الصافي 💰</span><span id="totProfit">0</span></div>
+
+<div class="grid grid-cols-2 gap-3">
+<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl">💰</div><div class="text-[10px] opacity-60 mt-1">ارباحك الكلية</div><div id="totalEarnings" class="font-black text-[14px] mt-1 text-green-400">0 د.ع</div></div>
+<div class="glass rounded-2xl p-4 text-center"><div class="text-2xl">📦</div><div class="text-[10px] opacity-60 mt-1">طلباتك</div><div id="totalOrders" class="font-black text-[14px] mt-1">0</div></div>
 </div>
-<button onclick="sendWA()" class="w-full bg-gradient-to-r from-[#25D366] to-[#128C7E] py-4 rounded-2xl font-black text-[13px] shadow-[0_10px_30px_rgba(37,211,102,0.4)]">ارسال الطلب واتساب ✅</button>
+
+<button onclick="logout()" class="w-full bg-red-500/10 border border-red-500/20 text-red-400 py-3.5 rounded-xl font-bold text-[12px]">🚪 تسجيل خروج</button>
+<div class="text-center text-[10px] opacity-30 pb-4">لوحة التحكم للادمن فقط: mazaya/admin.html<br>مخفية عن المروجين</div>
 </div>
 </div></div>
+
 </div>
 
 <script>
-const WA="9647708265111";
-const CATS=["الكل","الكترونيات","اجهزة المنزل","اجهزة المطبخ","منتجات العنايه","العاب","ادوات السيارات","عدد وادوات","ادوات رياضية","اثاث","انارة و اضاءة"];
-let active="الكل";
-let defaultProducts=[
-{id:1,n:"سماعات بلوتوث Pro Max",desc:"عزل ضوضاء - بطارية 20 ساعة - صوت نقي",whole:25000,sell:38000,c:"الكترونيات",i:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",s:120,minProfit:3000,maxProfit:15000},
-{id:2,n:"ميزان مطبخ رقمي ذكي",desc:"حساس ودقيق يتحمل 10 كغم - شاشة LED",whole:16500,sell:25000,c:"اجهزة المطبخ",i:"https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400",s:85,minProfit:3000,maxProfit:10000}
-];
-let products=[],cart=[];
-function loadP(){let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]"); products=[...defaultProducts,...custom];}
-function saveLogin(n,p){localStorage.setItem("mazaya_promoter_name",n);localStorage.setItem("mazaya_promoter_phone",p);localStorage.setItem("mazaya_login_time",Date.now());}
-function checkLogin(){let n=localStorage.getItem("mazaya_promoter_name"),ph=localStorage.getItem("mazaya_promoter_phone"); if(n&&n.length>=2){document.getElementById("displayName").innerText="أهلاً، "+n;document.getElementById("displayPhone").innerText=ph||"";document.getElementById("loginScreen").style.display="none";return true;}document.getElementById("loginScreen").style.display="flex";return false;}
-function doLogin(){let n=document.getElementById("promoterName").value.trim(),p=document.getElementById("promoterPhone").value.trim(); if(n.length<2)return alert("اكتب اسمك الهيبة 👑"); if(p.length<7)return alert("اكتب رقمك"); let b=document.getElementById("loginBtn"); b.innerText="جاري الدخول للهيبة... ⏳"; setTimeout(()=>{saveLogin(n,p);checkLogin(); b.innerText="تم ✅"; setTimeout(()=>b.innerText="دخول للإمبراطورية 🚀",800);},600);}
-function logout(){if(confirm("تخرج من الهيبة؟")){localStorage.removeItem("mazaya_promoter_name");localStorage.removeItem("mazaya_promoter_phone");location.reload();}}
-function renderCats(){document.getElementById("cats").innerHTML=CATS.map(x=>`<button onclick="setCat('${x}')" class="${active===x?'bg-gradient-to-r from-[#7c3aed] to-[#ec4899] text-white shadow-[0_8px_20px_rgba(124,58,237,0.4)] scale-105':'glass text-white/60 hover:text-white'} px-5 py-3 rounded-full text-[11px] font-black whitespace-nowrap transition-all">${x}</button>`).join("");}
+const WA="9647708265111";const CATS=["الكل","الكترونيات","اجهزة المنزل","اجهزة المطبخ","منتجات العنايه","العاب","ادوات السيارات"];let active="الكل";let defaultProducts=[{id:1,n:"ميزان مطبخ رقمي ذكي",desc:"حساس ودقيق يتحمل 10 كغم - شاشة LED",whole:16500,sell:25000,c:"اجهزة المطبخ",i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",s:85,minProfit:3000,maxProfit:10000},{id:2,n:"سماعات بلوتوث Pro Max",desc:"عزل ضوضاء - بطارية 20 ساعة",whole:25000,sell:38000,c:"الكترونيات",i:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",s:120,minProfit:5000,maxProfit:15000}];let products=[],cart=[];
+function loadP(){let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");products=[...defaultProducts,...custom];}
+function saveLogin(n,p){localStorage.setItem("mazaya_promoter_name",n);localStorage.setItem("mazaya_promoter_phone",p);}
+function checkLogin(){let n=localStorage.getItem("mazaya_promoter_name"),ph=localStorage.getItem("mazaya_promoter_phone");if(n&&n.length>=2){document.getElementById("displayName").innerText="أهلاً، "+n;document.getElementById("displayPhone").innerText=ph||"";document.getElementById("settingsName").innerText=n;document.getElementById("settingsPhone").innerText=ph||"";document.getElementById("avatarLetter").innerText=n.charAt(0);document.getElementById("editName").value=n;document.getElementById("editPhone").value=ph||"";document.getElementById("loginScreen").style.display="none";return true;}document.getElementById("loginScreen").style.display="flex";return false;}
+function doLogin(){let n=document.getElementById("promoterName").value.trim(),p=document.getElementById("promoterPhone").value.trim();if(n.length<2)return alert("اكتب اسمك");if(p.length<7)return alert("اكتب رقمك");saveLogin(n,p);checkLogin();}
+function saveSettings(){let n=document.getElementById("editName").value.trim(),p=document.getElementById("editPhone").value.trim();if(n.length<2)return alert("اكتب اسم صحيح");saveLogin(n,p);checkLogin();alert("تم حفظ اعداداتك ✅");closeSettings();}
+function logout(){if(confirm("تخرج؟")){localStorage.removeItem("mazaya_promoter_name");localStorage.removeItem("mazaya_promoter_phone");location.reload();}}
+function renderCats(){document.getElementById("cats").innerHTML=CATS.map(x=>`<button onclick="setCat('${x}')" class="${active===x?'bg-gradient-to-r from-[#7c3aed] to-[#ec4899] text-white shadow':'glass text-white/60'} px-5 py-3 rounded-full text-[11px] font-black whitespace-nowrap">${x}</button>`).join("");}
 function setCat(x){active=x;renderCats();doFilter();}
-function render(list){
-document.getElementById("productCount").innerText=list.length+" منتج هيبة";
-document.getElementById("grid").innerHTML=list.map(pr=>`
-<div class="card-heba rounded-[22px] p-3 shine">
-<div class="relative">
-<div class="absolute top-2 right-2 z-10 flex gap-1"><span class="bg-black/60 backdrop-blur border border-white/10 px-2 py-1 rounded-full text-[8px] font-black">${pr.c}</span></div>
-<div class="absolute top-2 left-2 z-10 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] px-2.5 py-1 rounded-full text-[9px] font-black shadow">ربح ${(pr.sell-pr.whole).toLocaleString()}</div>
-<img src="${pr.i}" class="w-full h-36 object-contain rounded-[16px] bg-[#0f0f17] border border-white/5 p-2">
-<div class="absolute bottom-2 left-2 bg-black/70 backdrop-blur px-2 py-1 rounded-full text-[8px] border border-white/10">📦 ${pr.s} قطعة</div>
-</div>
-<div class="mt-3"><div class="font-black text-[12px] leading-4 line-clamp-2 h-8">${pr.n}</div><div class="text-[10px] opacity-50 mt-1 line-clamp-2 h-8 leading-4">${pr.desc||""}</div></div>
-<div class="mt-3 bg-black/40 border border-white/5 rounded-xl p-2.5">
-<div class="flex justify-between text-[9px]"><span class="opacity-50">جملة</span><b class="text-[11px]">${pr.whole.toLocaleString()} د.ع</b></div>
-<div class="mt-2"><div class="text-[8px] opacity-40 font-bold">سعر بيعك (انت تحدده)</div><input type="number" value="${pr.sell}" onchange="updateSell(${pr.id},this.value)" class="w-full mt-1 bg-[#1a1a28] border border-[#7c3aed]/20 focus:border-[#7c3aed] rounded-xl p-2 text-[12px] font-black text-[#a78bfa] outline-none"></div>
-<div class="flex gap-1 mt-2"><span class="bg-red-500/10 border border-red-500/20 text-red-300 px-2 py-1 rounded-full text-[7px] font-bold">ادنى ${(pr.minProfit||3000).toLocaleString()}</span><span class="bg-green-500/10 border border-green-500/20 text-green-300 px-2 py-1 rounded-full text-[7px] font-bold">اكثر ${(pr.maxProfit||15000).toLocaleString()}</span></div>
-</div>
-<button onclick="add(${pr.id})" class="w-full mt-3 bg-white text-black py-3 rounded-xl text-[11px] font-black hover:bg-[#a78bfa] hover:text-white transition-all active:scale-[0.97]">إضافة للسلة الهيبة + 👑</button>
-</div>`).join("")||`<div class='col-span-2 glass rounded-[22px] p-10 text-center'><div class='text-4xl'>👑</div><div class='mt-3 font-black'>لا يوجد هيبة بعد</div><div class='text-[11px] opacity-50 mt-1'>اضف منتجات من لوحة التحكم</div></div>`;
-}
-function updateSell(id,val){let pr=products.find(p=>p.id==id); if(!pr)return; let ns=parseInt(val)||pr.whole, minA=pr.whole+(pr.minProfit||3000), maxA=pr.whole+(pr.maxProfit||15000); if(ns<minA){alert("الحد الادنى "+minA.toLocaleString()); ns=minA; event.target.value=minA;} if(ns>maxA){alert("الحد الاعلى "+maxA.toLocaleString()); ns=maxA; event.target.value=maxA;} pr.sell=ns; let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]"); let f=custom.find(x=>x.id==id); if(f){f.sell=pr.sell; localStorage.setItem("mazaya_custom_products",JSON.stringify(custom));} up(); doFilter();}
-function doFilter(){loadP(); let q=document.getElementById("search").value.toLowerCase().trim(); let f=products.filter(p=>(active==="الكل"||p.c===active)&&(p.n.toLowerCase().includes(q)||(p.desc||"").toLowerCase().includes(q))); render(f);}
-function add(id){let ex=cart.find(c=>c.id==id); if(ex)ex.q++; else cart.push({id,q:1}); up(); openCart();}
-function up(){let tq=cart.reduce((s,c)=>s+c.q,0); document.getElementById("cq").innerText=tq; document.getElementById("cq2").innerText=tq; let whole=0,sell=0; document.getElementById("clist").innerHTML=cart.map(c=>{let p=products.find(x=>x.id==c.id); if(!p)return ""; whole+=p.whole*c.q; sell+=p.sell*c.q; return `<div class="glass p-3 rounded-2xl flex gap-3 items-center"><img src="${p.i}" class="w-16 h-16 rounded-xl bg-[#1a1a28] object-contain border border-white/5"><div class="flex-1"><div class="font-bold text-[11px] line-clamp-1">${p.n}</div><div class="flex items-center gap-2 mt-2"><input type="number" value="${c.q}" onchange="let it=cart.find(x=>x.id==${p.id}); it.q=Math.max(1,parseInt(this.value)||1); up()" class="w-14 bg-[#1a1a28] border border-white/10 rounded-lg p-1.5 text-center font-black text-[11px]"><span class="text-[10px] opacity-50">ربح ${(p.sell-p.whole)*c.q}</span></div></div><button onclick="cart=cart.filter(x=>x.id!=${p.id});up()" class="w-8 h-8 bg-red-500/20 text-red-400 rounded-full">✕</button></div>`;}).join("")||"<div class='text-center py-12 opacity-30'><div class='text-3xl'>🛒</div><div class='text-[12px] mt-2'>سلة الهيبة فارغة</div></div>"; document.getElementById("totWhole").innerText=whole.toLocaleString()+" د.ع"; document.getElementById("totSell").innerText=sell.toLocaleString()+" د.ع"; document.getElementById("totProfit").innerText=(sell-whole).toLocaleString()+" د.ع";}
-function openCart(){document.getElementById("drawer").classList.remove("hidden");} function closeCart(){document.getElementById("drawer").classList.add("hidden");}
-function sendWA(){if(!cart.length)return alert("السلة فارغة"); let cn=document.getElementById("cname").value.trim(), cp=document.getElementById("cphone").value.trim(), ca=document.getElementById("caddr").value.trim(); if(!cn||!cp||!ca)return alert("املأ بيانات الزبون"); let pn=localStorage.getItem("mazaya_promoter_name")||"", pp=localStorage.getItem("mazaya_promoter_phone")||""; let orders=JSON.parse(localStorage.getItem("mazaya_orders")||"[]"); orders.push({date:new Date().toISOString(),promoter:pn,items:cart,total:document.getElementById("totSell").innerText}); localStorage.setItem("mazaya_orders",JSON.stringify(orders)); let msg=`*👑 طلب هيبة - مزايا*%0A%0A*المروج:* ${pn} - ${pp}%0A----------------%0A`; cart.forEach((c,i)=>{let p=products.find(x=>x.id==c.id); msg+=`%0A*${i+1}. ${p.n}*%0Aكمية: ${c.q}%0Aجملة: ${p.whole}%0Aبيع: ${p.sell}%0A`;}); msg+=`%0A----------------%0A*الزبون:* ${cn}%0A*رقمه:* ${cp}%0A*عنوانه:* ${ca}%0A*الربح:* ${document.getElementById("totProfit").innerText}`; window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
+function render(list){document.getElementById("productCount").innerText=list.length+" منتج هيبة";document.getElementById("grid").innerHTML=list.map(pr=>`<div class="card-heba rounded-[22px] p-3"><div class="relative"><div class="absolute top-2 right-2 bg-black/60 border border-white/10 px-2 py-1 rounded-full text-[8px] font-black">${pr.c}</div><div class="absolute top-2 left-2 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] px-2.5 py-1 rounded-full text-[9px] font-black">ربح ${(pr.sell-pr.whole).toLocaleString()}</div><img src="${pr.i}" class="w-full h-36 object-contain rounded-[16px] bg-[#0f0f17] border border-white/5 p-2"><div class="absolute bottom-2 left-2 bg-black/70 px-2 py-1 rounded-full text-[8px]">📦 ${pr.s}</div></div><div class="mt-3"><div class="font-black text-[12px] h-8 leading-4 line-clamp-2">${pr.n}</div><div class="text-[10px] opacity-50 mt-1 h-8 line-clamp-2">${pr.desc||""}</div></div><div class="mt-3 bg-black/40 border border-white/5 rounded-xl p-2.5"><div class="flex justify-between text-[9px]"><span class="opacity-50">جملة</span><b>${pr.whole.toLocaleString()} د.ع</b></div><input type="number" value="${pr.sell}" onchange="updateSell(${pr.id},this.value)" class="w-full mt-2 bg-[#1a1a28] border border-[#7c3aed]/20 rounded-xl p-2 text-[12px] font-black text-[#a78bfa] outline-none"></div><button onclick="add(${pr.id})" class="w-full mt-3 bg-white text-black py-3 rounded-xl text-[11px] font-black">إضافة للسلة + 👑</button></div>`).join("");}
+function updateSell(id,val){let pr=products.find(p=>p.id==id);if(!pr)return;let ns=parseInt(val)||pr.whole,minA=pr.whole+(pr.minProfit||3000),maxA=pr.whole+(pr.maxProfit||15000);if(ns<minA){alert("الحد الادنى "+minA.toLocaleString());ns=minA;event.target.value=minA;}if(ns>maxA){alert("الحد الاعلى "+maxA.toLocaleString());ns=maxA;event.target.value=maxA;}pr.sell=ns;let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");let f=custom.find(x=>x.id==id);if(f){f.sell=pr.sell;localStorage.setItem("mazaya_custom_products",JSON.stringify(custom));}up();doFilter();}
+function doFilter(){loadP();let q=document.getElementById("search").value.toLowerCase().trim();let f=products.filter(p=>(active==="الكل"||p.c===active)&&(p.n.toLowerCase().includes(q)||(p.desc||"").toLowerCase().includes(q)));render(f);}
+function add(id){let ex=cart.find(c=>c.id==id);if(ex)ex.q++;else cart.push({id,q:1});up();openCart();}
+function up(){let tq=cart.reduce((s,c)=>s+c.q,0);document.getElementById("cq").innerText=tq;document.getElementById("cq2").innerText=tq;let whole=0,sell=0;document.getElementById("clist").innerHTML=cart.map(c=>{let p=products.find(x=>x.id==c.id);if(!p)return"";whole+=p.whole*c.q;sell+=p.sell*c.q;return `<div class="glass p-3 rounded-2xl flex gap-3"><img src="${p.i}" class="w-16 h-16 rounded-xl bg-[#1a1a28] object-contain"><div class="flex-1"><div class="font-bold text-[11px]">${p.n}</div><div class="text-[10px] text-green-400">ربح ${(p.sell-p.whole)*c.q}</div></div><button onclick="cart=cart.filter(x=>x.id!=${p.id});up()" class="w-8 h-8 bg-red-500/20 text-red-400 rounded-full">✕</button></div>`;}).join("")||"<div class='text-center py-12 opacity-30'>🛒 السلة فارغة</div>";document.getElementById("totWhole").innerText=whole.toLocaleString()+" د.ع";document.getElementById("totProfit").innerText=(sell-whole).toLocaleString()+" د.ع";let orders=JSON.parse(localStorage.getItem("mazaya_orders")||"[]");document.getElementById("totalOrders").innerText=orders.length;let earn=orders.reduce((s,o)=>{let t=0; if(o.items) o.items.forEach(i=>{let pp=products.find(p=>p.id==i.id); if(pp) t+=(pp.sell-pp.whole)*i.q}); return s+t;},0);document.getElementById("totalEarnings").innerText=earn.toLocaleString()+" د.ع";}
+function openCart(){document.getElementById("drawer").classList.remove("hidden");}function closeCart(){document.getElementById("drawer").classList.add("hidden");}
+function openSettings(){up();document.getElementById("settingsDrawer").classList.remove("hidden");}function closeSettings(){document.getElementById("settingsDrawer").classList.add("hidden");}
+function sendWA(){if(!cart.length)return alert("فارغة");let cn=document.getElementById("cname").value.trim(),cp=document.getElementById("cphone").value.trim(),ca=document.getElementById("caddr").value.trim();if(!cn||!cp||!ca)return alert("املأ البيانات");let pn=localStorage.getItem("mazaya_promoter_name")||"",pp=localStorage.getItem("mazaya_promoter_phone")||"";let orders=JSON.parse(localStorage.getItem("mazaya_orders")||"[]");orders.push({date:new Date().toISOString(),promoter:pn,items:cart});localStorage.setItem("mazaya_orders",JSON.stringify(orders));let msg=`*👑 طلب هيبة - مزايا*%0Aالمروج: ${pn} - ${pp}%0A`;cart.forEach((c,i)=>{let p=products.find(x=>x.id==c.id);msg+=`${i+1}. ${p.n} x${c.q}%0A`;});msg+=`الزبون: ${cn} - ${cp} - ${ca}%0Aربح: ${document.getElementById("totProfit").innerText}`;window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");}
 loadP();checkLogin();renderCats();doFilter();
 </script>
 </body>
