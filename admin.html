@@ -1,1 +1,284 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>لوحة التحكم</title><script src="https://cdn.tailwindcss.com"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body style="font-family:Cairo;background:#0f0e1f;color:white;padding:12px;"><div style="max-width:600px;margin:auto;"><div style="display:flex;justify-content:space-between;margin-bottom:16px;"><a href="index.html" style="background:white;color:black;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:bold;text-decoration:none;">← المتجر</a><div id="totalCount" style="background:#7c3aed;padding:4px 12px;border-radius:20px;font-size:12px;">0 منتج</div></div><div style="background:#1c1a33;padding:16px;border-radius:16px;margin-bottom:16px;"><div style="font-weight:bold;font-size:14px;margin-bottom:8px;">⚙️ حدد الادنى والاكثر للكل</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><input id="globalMin" type="number" value="3000" placeholder="اقل ربح" style="padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;"><input id="globalMax" type="number" value="15000" placeholder="اكثر ربح" style="padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;"></div><button onclick="applyGlobal()" style="width:100%;margin-top:10px;background:#7c3aed;padding:12px;border-radius:12px;font-weight:bold;border:none;color:white;">طبق على الكل ✅</button></div><div style="background:#1c1a33;padding:16px;border-radius:16px;margin-bottom:16px;"><div style="font-weight:bold;font-size:14px;margin-bottom:8px;">📥 استيراد Excel</div><input type="file" id="excelFile" accept=".xlsx,.xls,.csv" style="width:100%;padding:8px;background:#211f3f;border-radius:12px;font-size:12px;margin-bottom:8px;"><button onclick="importExcel()" style="width:100%;background:#16a34a;padding:12px;border-radius:12px;font-weight:bold;border:none;color:white;">استيراد 📥</button><div style="display:flex;gap:8px;margin-top:8px;"><button onclick="downloadTemplate()" style="flex:1;background:#211f3f;padding:10px;border-radius:12px;font-size:10px;border:1px solid #333;color:white;">📄 نموذج</button><button onclick="exportProducts()" style="flex:1;background:#211f3f;padding:10px;border-radius:12px;font-size:10px;border:1px solid #333;color:white;">📤 تصدير</button></div></div><div style="background:#1c1a33;padding:16px;border-radius:16px;margin-bottom:16px;"><div style="font-weight:bold;font-size:14px;margin-bottom:8px;">➕ اضافة منتج</div><input id="pName" placeholder="اسم المنتج" style="width:100%;padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;margin-bottom:8px;"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><input id="pWhole" type="number" placeholder="جملة" style="padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;"><input id="pSell" type="number" placeholder="بيع" style="padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;"><input id="pMin" type="number" placeholder="اقل ربح 3000" style="padding:12px;border-radius:12px;background:#4a0000;border:1px solid red;color:white;font-size:12px;"><input id="pMax" type="number" placeholder="اكثر ربح 15000" style="padding:12px;border-radius:12px;background:#003d00;border:1px solid green;color:white;font-size:12px;"></div><input id="pCat" placeholder="الصنف - الكترونيات" value="الكترونيات" style="width:100%;padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;margin-bottom:8px;"><input id="pImg" placeholder="رابط الصورة" style="width:100%;padding:12px;border-radius:12px;background:#211f3f;border:1px solid #333;color:white;font-size:12px;margin-bottom:8px;"><button onclick="addOne()" style="width:100%;background:#7c3aed;padding:14px;border-radius:12px;font-weight:900;border:none;color:white;">اضافة ✅</button></div><div style="display:flex;gap:8px;margin-bottom:12px;"><input id="searchBox" oninput="render()" placeholder="ابحث..." style="flex:1;padding:12px;border-radius:12px;background:#1c1a33;border:1px solid #333;color:white;font-size:12px;"><select id="filterCat" onchange="render()" style="padding:12px;border-radius:12px;background:#1c1a33;border:1px solid #333;color:white;font-size:12px;"><option value="">الكل</option></select></div><div id="list"></div></div><script>function getP(){return JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");}function saveP(p){localStorage.setItem("mazaya_custom_products",JSON.stringify(p));render();}function addOne(){let n=document.getElementById("pName").value.trim();let w=parseInt(document.getElementById("pWhole").value)||0;let s=parseInt(document.getElementById("pSell").value)||0;let minP=parseInt(document.getElementById("pMin").value)||3000;let maxP=parseInt(document.getElementById("pMax").value)||15000;let c=document.getElementById("pCat").value||"الكترونيات";let img=document.getElementById("pImg").value.trim()||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400";if(!n||!w){alert("اسم وجملة");return;}let arr=getP();arr.push({id:Date.now(),n,whole:w,sell:s||w+minP,c,i:img,s:50,minProfit:minP,maxProfit:maxP});saveP(arr);document.getElementById("pName").value="";alert("تم ✅");}function applyGlobal(){let minP=parseInt(document.getElementById("globalMin").value)||0;let maxP=parseInt(document.getElementById("globalMax").value)||0;if(!confirm("تطبق "+minP+" و "+maxP+" على الكل؟"))return;let arr=getP();arr=arr.map(p=>({...p,minProfit:minP,maxProfit:maxP}));saveP(arr);alert("تم على "+arr.length);}function importExcel(){let file=document.getElementById("excelFile").files[0];if(!file){alert("اختار ملف");return;}let reader=new FileReader();reader.onload=function(e){let data=new Uint8Array(e.target.result);let wb=XLSX.read(data,{type:"array"});let sheet=wb.Sheets[wb.SheetNames[0]];let json=XLSX.utils.sheet_to_json(sheet);let arr=getP();let c=0;json.forEach(row=>{let name=row["الاسم"]||Object.values(row)[0];let whole=row["سعر الجملة"]||Object.values(row)[1];let sell=row["سعر البيع"]||Object.values(row)[2];let minP=row["اقل ربح"]||3000;let maxP=row["اكثر ربح"]||15000;let cat=row["الصنف"]||"جميع المنتجات";let img=row["رابط الصورة"]||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400";if(name&&whole){arr.push({id:Date.now()+c++,n:String(name),whole:parseInt(whole),sell:parseInt(sell)||parseInt(whole)+parseInt(minP),c:String(cat),i:String(img),s:50,minProfit:parseInt(minP),maxProfit:parseInt(maxP)});}});saveP(arr);alert("تم "+c);};reader.readAsArrayBuffer(file);}function downloadTemplate(){let data=[["الاسم","سعر الجملة","سعر البيع","اقل ربح","اكثر ربح","الصنف","رابط الصورة","الكمية"],["ميزان مطبخ",16500,25000,3000,10000,"اجهزة المطبخ","https://...jpg",100]];let ws=XLSX.utils.aoa_to_sheet(data);let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"منتجات");XLSX.writeFile(wb,"نموذج.xlsx");}function exportProducts(){let arr=getP();if(!arr.length){alert("ماكو");return;}let ws=XLSX.utils.json_to_sheet(arr.map(p=>({"الاسم":p.n,"جملة":p.whole,"بيع":p.sell,"اقل ربح":p.minProfit,"اكثر ربح":p.maxProfit})));let wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"منتجات");XLSX.writeFile(wb,"تصدير.xlsx");}function del(id){if(confirm("حذف؟"))saveP(getP().filter(x=>x.id!==id));}function render(){let arr=getP();let q=(document.getElementById("searchBox").value||"").toLowerCase();let filtered=arr.filter(p=>!q||p.n.toLowerCase().includes(q));document.getElementById("totalCount").innerText=arr.length+" منتج";document.getElementById("list").innerHTML=filtered.slice().reverse().map(p=>`<div style="background:#1c1a33;padding:12px;border-radius:12px;border:1px solid #2a2750;display:flex;gap:12px;margin-bottom:8px;"><img src="${p.i}" style="width:48px;height:48px;border-radius:12px;object-fit:cover;"><div style="flex:1;font-size:11px;"><div style="font-weight:bold;">${p.n}</div><div style="opacity:0.6;font-size:10px;margin-top:4px;">${p.c} | جملة ${p.whole} | ادنى ${p.minProfit} | اكثر ${p.maxProfit}</div></div><button onclick="del(${p.id})" style="color:#ff4444;background:none;border:none;font-size:16px;">✕</button></div>`).join("")||"<div style='text-align:center;opacity:0.3;font-size:12px;padding:40px 0;'>ماكو منتجات</div>";}render();</script></body></html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مزايا - لوحة التحكم</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+body{font-family:Cairo;background:#0f0e1f;color:white}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2a2750;border-radius:10px}
+.card{background:#1a1830;border:1px solid #2a2750;border-radius:18px}
+</style>
+</head>
+<body class="bg-[#0f0e1f]">
+<div class="flex min-h-screen">
+
+<!-- سايدبار -->
+<div class="w-[260px] bg-[#151328] border-l border-[#2a2750] p-4 hidden md:block fixed h-full right-0 top-0 z-20">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#7c3aed] rounded-lg flex items-center justify-center font-black">M</div><div><div class="font-black text-[16px] text-[#a78bfa]">مزايا</div><div class="text-[9px] opacity-50">منصة مزايا B2B</div></div></div>
+</div>
+
+<div class="space-y-1">
+<div class="bg-[#7c3aed] text-white px-4 py-3 rounded-xl text-[12px] font-bold flex items-center justify-between"><span>لوحة التحكم</span><span>⊞</span></div>
+<button onclick="showSection('products')" class="w-full text-right px-4 py-3 rounded-xl text-[12px] opacity-60 hover:bg-[#1e1c38] flex justify-between"><span>إدارة المنتجات</span><span>📦</span></button>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>الطلبات</span><span class="bg-[#7c3aed] text-white px-2 rounded-full text-[10px]">12</span></div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>قائمة المروجين</span><span>👥</span></div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>مستويات المخزون</span><span>📊</span></div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60">التحليلات والتقارير</div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60">العملاء</div>
+<div class="px-4 py-2 text-[11px] opacity-40 mt-4">الإعدادات</div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>الإعدادات</span><span>⚙️</span></div>
+<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>المساعدة والدعم</span><span>❓</span></div>
+<div class="mt-6 bg-gradient-to-br from-[#7c3aed] to-[#5b21b6] p-4 rounded-2xl text-center">
+<div class="text-[11px] font-bold leading-5">ترقية إلى الخطة الاحترافية<br><span class="opacity-70 text-[10px]">احصل على تقارير مفصلة وتحليلات أعمق</span></div>
+<button class="mt-3 bg-white text-[#7c3aed] px-4 py-1.5 rounded-full text-[11px] font-black">ترقية الآن</button>
+</div>
+</div>
+</div>
+
+<!-- محتوى -->
+<div class="flex-1 md:mr-[260px] p-3 md:p-5">
+
+<!-- هيدر -->
+<div class="flex justify-between items-center mb-5">
+<div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100" class="w-9 h-9 rounded-full"><span class="font-bold text-[13px]">مرحباً، أحمد</span><span class="text-[10px] opacity-50">▼</span></div>
+<div class="flex items-center gap-3"><span class="text-xl">⚙️</span><div class="relative"><span class="text-xl">🔔</span><span class="absolute -top-1 -right-1 bg-[#7c3aed] text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center">2</span></div><span class="text-xl">🔍</span></div>
+</div>
+
+<!-- عنوان اللوحة -->
+<div class="flex justify-between items-center mb-4">
+<div class="font-black text-[18px]">لوحة التحكم</div>
+<div class="flex gap-2"><button class="bg-[#1a1830] border border-[#2a2750] px-3 py-1.5 rounded-full text-[11px]">فلترة ▾</button><button class="bg-[#7c3aed] px-3 py-1.5 rounded-full text-[11px] font-bold">تصدير التقرير ↓</button></div>
+</div>
+<div class="text-[12px] opacity-60 mb-4">نظرة عامة على أداء منصة مزايا - نوفمبر 2024</div>
+
+<!-- كروت الاحصائيات -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center text-[#a78bfa] mb-2">📦</div><div class="text-[11px] opacity-60">مستوى المخزون</div><div class="font-black text-[20px] mt-1">82%</div><div class="text-[10px] text-red-400 mt-1">-3% • 23 منتج منخفض</div></div>
+<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">👥</div><div class="text-[11px] opacity-60">المروجين النشطين</div><div class="font-black text-[20px] mt-1">56</div><div class="text-[10px] text-green-400 mt-1">+5 • 7 مروجين جدد هذا الأسبوع</div></div>
+<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">🛒</div><div class="text-[11px] opacity-60">الطلبات</div><div class="font-black text-[20px] mt-1">348</div><div class="text-[10px] text-green-400 mt-1">+8% • 32 طلب جديد اليوم</div></div>
+<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">📈</div><div class="text-[11px] opacity-60">إجمالي المبيعات</div><div class="font-black text-[20px] mt-1">1.24 د.إ</div><div class="text-[10px] text-green-400 mt-1">+12.4% <span class="text-[9px] opacity-50">مقارنة بالشهر الماضي -3%</span></div></div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+<!-- يسار -->
+<div class="lg:col-span-2 space-y-4">
+
+<!-- رسم + جدول -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="card p-4">
+<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">المبيعات الشهرية</div><div class="flex items-center gap-2"><div class="flex items-center gap-1"><div class="w-2 h-2 bg-[#a78bfa] rounded-full"></div><span class="text-[10px]">الطلبات</span></div><select class="bg-[#211f3f] text-[10px] px-2 py-1 rounded-full border"><option>آخر 6 أشهر</option></select></div></div>
+<canvas id="salesChart" height="180"></canvas>
+</div>
+
+<div class="card p-3 overflow-auto">
+<div class="flex text-[10px] opacity-50 border-b border-[#2a2750] pb-2 mb-2 gap-2"><div class="flex-1">المنتج</div><div class="w-10">الكمية</div><div class="w-20">مستوى المخزون</div><div class="w-12">السعر</div><div class="w-12">الحالة</div></div>
+<div id="miniProducts"></div>
+</div>
+</div>
+
+<!-- ادارة المنتجات الكاملة -->
+<div class="card p-4" id="productsSection">
+<div class="flex justify-between items-center mb-4">
+<div class="font-bold text-[14px]">إدارة المنتجات <span id="totalCount" class="bg-[#7c3aed] text-white px-2 py-0.5 rounded-full text-[11px] mr-2">0</span></div>
+<button onclick="openAddModal()" class="bg-[#7c3aed] px-4 py-2 rounded-full text-[11px] font-bold">+ اضافة منتج جديد</button>
+</div>
+
+<!-- رفع اكسل -->
+<div class="bg-[#151328] p-3 rounded-xl border border-[#2a2750] mb-4 flex flex-wrap gap-2 items-center">
+<input type="file" id="excelFile" accept=".xlsx,.xls,.csv" class="text-[11px] bg-[#211f3f] p-1.5 rounded-lg">
+<button onclick="importExcel()" class="bg-green-600 px-3 py-1.5 rounded-full text-[11px]">استيراد Excel 📥</button>
+<button onclick="downloadTemplate()" class="bg-[#211f3f] border px-3 py-1.5 rounded-full text-[10px]">📄 نموذج</button>
+<button onclick="exportProducts()" class="bg-[#211f3f] border px-3 py-1.5 rounded-full text-[10px]">📤 تصدير</button>
+<div class="w-full grid grid-cols-2 gap-2 mt-2">
+<input id="globalMin" type="number" value="3000" placeholder="اقل ربح" class="p-2 rounded-lg bg-[#211f3f] border border-[#2a2750] text-[11px]">
+<input id="globalMax" type="number" value="15000" placeholder="اكثر ربح" class="p-2 rounded-lg bg-[#211f3f] border border-[#2a2750] text-[11px]">
+</div>
+<button onclick="applyGlobal()" class="w-full mt-2 bg-[#7c3aed]/20 border border-[#7c3aed]/50 py-2 rounded-xl text-[11px]">طبق الادنى والاكثر على كل المنتجات</button>
+</div>
+
+<div class="flex gap-2 mb-3">
+<input id="searchBox" oninput="render()" placeholder="🔍 ابحث..." class="flex-1 p-2.5 rounded-xl bg-[#151328] border border-[#2a2750] text-[11px]">
+<select id="filterCat" onchange="render()" class="p-2.5 rounded-xl bg-[#151328] border border-[#2a2750] text-[11px]"><option value="">كل الاصناف</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option><option>عدد وادوات</option><option>ادوات رياضية</option><option>اثاث</option><option>انارة و اضاءة</option></select>
+</div>
+
+<div id="list" class="space-y-2 max-h-[500px] overflow-auto"></div>
+</div>
+
+</div>
+
+<!-- يمين -->
+<div class="space-y-4">
+
+<!-- احدث الطلبات -->
+<div class="card p-4">
+<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">أحدث الطلبات</div><span class="text-[11px] text-[#a78bfa] cursor-pointer">عرض الكل</span></div>
+<div class="space-y-3 text-[11px]">
+<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9241</div><div class="opacity-60 text-[10px]">شركة الخليج للتجارة<br>منذ 12 دقيقة - 1,240 د.إ</div></div><span class="bg-[#7c3aed] px-2.5 py-1 rounded-full text-[9px]">جديد</span></div>
+<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9238</div><div class="opacity-60 text-[10px]">مؤسسة النخبة المحدودة<br>منذ 45 دقيقة - 850 د.إ</div></div><span class="bg-[#4a3a8a] px-2.5 py-1 rounded-full text-[9px]">قيد المعالجة</span></div>
+<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9229</div><div class="opacity-60 text-[10px]">شركة الاستيراد<br>منذ 2 ساعة - 2,100 د.إ</div></div><span class="bg-green-600 px-2.5 py-1 rounded-full text-[9px]">مكتمل</span></div>
+<div class="flex justify-between items-start"><div><div class="font-bold">#ORD-9221</div><div class="opacity-60 text-[10px]">شركة البداية<br>منذ 4 ساعات - 560 د.إ</div></div><span class="bg-gray-600 px-2.5 py-1 rounded-full text-[9px]">ملغي</span></div>
+</div>
+</div>
+
+<!-- افضل المروجين -->
+<div class="card p-4">
+<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">أفضل المروجين</div><span class="text-[11px] text-[#a78bfa] cursor-pointer">عرض الكل</span></div>
+<div class="space-y-3">
+<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#7c3aed] rounded-full flex items-center justify-center text-[10px] font-bold">أش</div><div><div class="text-[11px] font-bold">أحمد الشمري</div><div class="text-[10px] opacity-50">42 عميل - 128 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+15.2%</span></div>
+<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#4a3a8a] rounded-full flex items-center justify-center text-[10px] font-bold">سم</div><div><div class="text-[11px] font-bold">سارة المطيري</div><div class="text-[10px] opacity-50">36 عميل - 98 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+9.8%</span></div>
+<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#3a2a5a] rounded-full flex items-center justify-center text-[10px] font-bold">خع</div><div><div class="text-[11px] font-bold">خالد العتيبي</div><div class="text-[10px] opacity-50">29 عميل - 76 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+5.4%</span></div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- مودال اضافة منتج مع رفع صورة -->
+<div id="addModal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center p-4">
+<div class="bg-[#1a1830] border border-[#2a2750] rounded-[24px] w-full max-w-[480px] max-h-[90vh] overflow-auto p-5">
+<div class="flex justify-between items-center mb-4"><div class="font-black text-[15px]">➕ اضافة منتج جديد</div><button onclick="closeAddModal()" class="w-8 h-8 bg-[#211f3f] rounded-full">✕</button></div>
+
+<div class="space-y-3">
+<!-- رفع صورة من الاستوديو -->
+<div>
+<label class="text-[11px] font-bold opacity-70">📸 صورة المنتج - ارفع من الاستوديو</label>
+<div id="imagePreview" class="mt-2 w-full h-40 bg-[#151328] border-2 border-dashed border-[#2a2750] rounded-2xl flex flex-col items-center justify-center cursor-pointer overflow-hidden" onclick="document.getElementById('imageInput').click()">
+<div id="previewPlaceholder" class="text-center"><div class="text-3xl">📷</div><div class="text-[11px] opacity-60 mt-1">اضغط لاختيار صورة من الاستوديو</div><div class="text-[9px] opacity-40">JPG, PNG</div></div>
+<img id="previewImg" class="w-full h-full object-cover hidden">
+</div>
+<input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+<input id="pImg" type="hidden">
+</div>
+
+<input id="pName" placeholder="اسم المنتج - مثال: ميزان مطبخ رقمي" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<textarea id="pDesc" placeholder="وصف المنتج - اكتب وصف مفصل للمنتج..." rows="3" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px] resize-none"></textarea>
+<div class="grid grid-cols-2 gap-2">
+<input id="pWhole" type="number" placeholder="سعر الجملة 16500" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<input id="pSell" type="number" placeholder="سعر البيع 25000" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+</div>
+<div class="grid grid-cols-2 gap-2">
+<input id="pMin" type="number" placeholder="اقل ربح 3000" class="p-3 rounded-xl bg-red-900/20 border border-red-500/30 text-[12px]">
+<input id="pMax" type="number" placeholder="اكثر ربح 15000" class="p-3 rounded-xl bg-green-900/20 border border-green-500/30 text-[12px]">
+</div>
+<select id="pCat" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option><option>عدد وادوات</option><option>ادوات رياضية</option><option>اثاث</option><option>انارة و اضاءة</option><option>ادوات منزلية</option><option>ادوات مطبخ</option>
+</select>
+<input id="pStock" type="number" placeholder="الكمية - 100" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+
+<button onclick="addOne()" class="w-full bg-[#7c3aed] py-3.5 rounded-xl font-black text-[13px] mt-2">حفظ المنتج ✅</button>
+</div>
+</div>
+</div>
+
+<script>
+let uploadedImageBase64 = "";
+function handleImageUpload(e){
+let file=e.target.files[0]; if(!file) return;
+let reader=new FileReader();
+reader.onload=function(ev){
+uploadedImageBase64=ev.target.result;
+document.getElementById("previewImg").src=uploadedImageBase64;
+document.getElementById("previewImg").classList.remove("hidden");
+document.getElementById("previewPlaceholder").classList.add("hidden");
+document.getElementById("pImg").value=uploadedImageBase64;
+};
+reader.readAsDataURL(file);
+}
+function openAddModal(){document.getElementById("addModal").classList.remove("hidden");}
+function closeAddModal(){document.getElementById("addModal").classList.add("hidden");}
+
+function getP(){return JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");}
+function saveP(p){localStorage.setItem("mazaya_custom_products",JSON.stringify(p)); render(); renderMini();}
+
+function addOne(){
+let n=document.getElementById("pName").value.trim();
+let desc=document.getElementById("pDesc").value.trim();
+let w=parseInt(document.getElementById("pWhole").value)||0;
+let s=parseInt(document.getElementById("pSell").value)||0;
+let minP=parseInt(document.getElementById("pMin").value)||3000;
+let maxP=parseInt(document.getElementById("pMax").value)||15000;
+let c=document.getElementById("pCat").value;
+let img=document.getElementById("pImg").value.trim()||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400";
+let st=parseInt(document.getElementById("pStock").value)||50;
+if(!n||!w){alert("اكتب اسم المنتج وسعر الجملة");return;}
+let arr=getP();
+arr.push({id:Date.now(),n,desc,whole:w,sell:s||w+minP,c,i:img,s:st,minProfit:minP,maxProfit:maxP});
+saveP(arr);
+document.getElementById("pName").value="";document.getElementById("pDesc").value="";document.getElementById("pWhole").value="";document.getElementById("pSell").value="";document.getElementById("pMin").value="";document.getElementById("pMax").value="";document.getElementById("pStock").value="";document.getElementById("pImg").value="";uploadedImageBase64="";document.getElementById("previewImg").classList.add("hidden");document.getElementById("previewPlaceholder").classList.remove("hidden");
+closeAddModal();
+alert("تمت الاضافة ✅");
+}
+
+function applyGlobal(){
+let minP=parseInt(document.getElementById("globalMin").value)||3000;
+let maxP=parseInt(document.getElementById("globalMax").value)||15000;
+if(!confirm("تطبق اقل ربح "+minP+" واكثر ربح "+maxP+" على كل المنتجات؟"))return;
+let arr=getP(); arr=arr.map(p=>({...p,minProfit:minP,maxProfit:maxP})); saveP(arr); alert("تم على "+arr.length);
+}
+function importExcel(){
+let file=document.getElementById("excelFile").files[0]; if(!file){alert("اختار ملف");return;}
+let reader=new FileReader();
+reader.onload=function(e){
+let data=new Uint8Array(e.target.result); let wb=XLSX.read(data,{type:"array"}); let sheet=wb.Sheets[wb.SheetNames[0]]; let json=XLSX.utils.sheet_to_json(sheet);
+let arr=getP(); let c=0;
+json.forEach(row=>{
+let name=row["الاسم"]||Object.values(row)[0]; let whole=row["سعر الجملة"]||Object.values(row)[1]; let sell=row["سعر البيع"]||Object.values(row)[2]; let minP=row["اقل ربح"]||3000; let maxP=row["اكثر ربح"]||15000; let cat=row["الصنف"]||"جميع المنتجات"; let img=row["رابط الصورة"]||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"; let stock=row["الكمية"]||50; let desc=row["الوصف"]||"";
+if(name&&whole){arr.push({id:Date.now()+c++,n:String(name),desc:String(desc),whole:parseInt(whole),sell:parseInt(sell)||parseInt(whole)+parseInt(minP),c:String(cat),i:String(img),s:parseInt(stock)||50,minProfit:parseInt(minP),maxProfit:parseInt(maxP)});}
+}); saveP(arr); alert("تم "+c);
+}; reader.readAsArrayBuffer(file);
+}
+function downloadTemplate(){let data=[["الاسم","سعر الجملة","سعر البيع","اقل ربح","اكثر ربح","الصنف","الوصف","رابط الصورة","الكمية"],["ميزان مطبخ",16500,25000,3000,10000,"اجهزة المطبخ","ميزان دقيق للمطبخ","https://...jpg",100]]; let ws=XLSX.utils.aoa_to_sheet(data); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجات"); XLSX.writeFile(wb,"مزايا_نموذج.xlsx");}
+function exportProducts(){let arr=getP(); if(!arr.length){alert("ماكو");return;} let ws=XLSX.utils.json_to_sheet(arr.map(p=>({"الاسم":p.n,"جملة":p.whole,"بيع":p.sell,"اقل ربح":p.minProfit,"اكثر ربح":p.maxProfit,"الصنف":p.c,"الوصف":p.desc||""}))); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجات"); XLSX.writeFile(wb,"تصدير.xlsx");}
+function del(id){if(confirm("حذف؟"))saveP(getP().filter(x=>x.id!==id));}
+function showSection(s){document.getElementById("productsSection").scrollIntoView({behavior:"smooth"});}
+
+function render(){
+let arr=getP(); let q=document.getElementById("searchBox").value.toLowerCase(); let fc=document.getElementById("filterCat").value;
+let filtered=arr.filter(p=>(!q||p.n.toLowerCase().includes(q))&&(!fc||p.c===fc));
+document.getElementById("totalCount").innerText=filtered.length;
+document.getElementById("list").innerHTML=filtered.slice().reverse().map(p=>`
+<div class="bg-[#151328] p-3 rounded-xl border border-[#2a2750] flex gap-3 items-start">
+<img src="${p.i}" class="w-14 h-14 rounded-xl object-cover bg-white">
+<div class="flex-1">
+<div class="font-bold text-[12px]">${p.n}</div>
+<div class="text-[10px] opacity-60 mt-1 line-clamp-2">${p.desc||"بدون وصف"}</div>
+<div class="flex gap-2 mt-2 flex-wrap">
+<span class="bg-[#211f3f] px-2 py-1 rounded-full text-[9px]">${p.c}</span>
+<span class="bg-red-900/30 text-red-300 px-2 py-1 rounded-full text-[9px]">ادنى ${ (p.minProfit||0).toLocaleString()}</span>
+<span class="bg-green-900/30 text-green-300 px-2 py-1 rounded-full text-[9px]">اكثر ${ (p.maxProfit||0).toLocaleString()}</span>
+</div>
+<div class="text-[10px] mt-1">جملة ${p.whole.toLocaleString()} | بيع ${p.sell.toLocaleString()} | كمية ${p.s}</div>
+</div>
+<button onclick="del(${p.id})" class="w-8 h-8 bg-red-500/10 text-red-400 rounded-full text-[12px]">✕</button>
+</div>`).join("")||"<div class='text-center opacity-30 text-xs py-10'>ماكو منتجات - اضغط اضافة منتج جديد</div>";
+}
+function renderMini(){
+let arr=getP().slice(-5).reverse();
+if(!arr.length){arr=[{n:"متوفر شاحن لاسلكي 20W",s:450,c:"الكترونيات",whole:450,i:"https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400"},{n:"متوفر جيد 75% 85 د.إ",s:85,c:"الكترونيات",whole:85,i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"}];}
+document.getElementById("miniProducts").innerHTML=arr.map(p=>`
+<div class="flex items-center gap-2 py-2 border-b border-[#2a2750]/30 last:border-0">
+<img src="${p.i}" class="w-8 h-8 rounded-lg object-cover bg-white">
+<div class="flex-1 text-[10px]"><div class="font-bold truncate">${p.n}</div><div class="opacity-50 text-[9px]">${p.c}</div></div>
+<div class="text-[10px]">${p.s}</div>
+<div class="text-[10px] w-12 text-center">${p.whole} د.إ</div>
+<div class="text-[9px] bg-green-600 px-2 py-0.5 rounded-full">متوفر</div>
+</div>`).join("");
+}
+
+// chart
+const ctx=document.getElementById('salesChart').getContext('2d');
+new Chart(ctx,{type:'line',data:{labels:['يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','أكتوبر','نوفمبر'],datasets:[{data:[50,150,250,300,250,400,650],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,0.1)',tension:0.4,fill:true,pointBackgroundColor:'#a78bfa',pointRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false,color:'#2a2750'},ticks:{color:'#666',font:{size:9}}},y:{grid:{color:'#2a2750'},ticks:{color:'#666',font:{size:9}}}}}});
+
+render(); renderMini();
+</script>
+</body>
+</html>
