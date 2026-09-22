@@ -24,44 +24,37 @@ input:focus,textarea:focus{border-color:rgba(124,58,237,0.4)!important;outline:n
 <div style="direction:rtl" class="flex items-center gap-2.5"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ec4899] to-[#7c3aed] flex items-center justify-center font-black">M</div><div><div class="font-black text-[13px] text-gradient">لوحة التحكم</div><div class="text-[8px] opacity-60">HEBA STORE ADMIN</div></div></div>
 <div style="direction:rtl" class="flex items-center gap-2.5"><div class="text-right"><div class="font-black text-[14px]">عمار</div><div class="text-[10px] opacity-50">الادمن 👑</div></div><div class="w-9 h-9 rounded-full bg-[#1e1e2e] border border-white/10 flex items-center justify-center">👤</div></div>
 </div>
-
 <div class="p-4 space-y-4">
-<div class="banner-heba rounded-[20px] p-4 flex justify-between"><div><div class="font-black text-[14px]">🔥 عروض الهيبة اليوم</div><div class="text-[11px] opacity-80 mt-1">رفع صور من الاستوديو لحد 12 صورة - مضغوطة</div></div><div class="text-[36px]">👑</div></div>
-
+<div class="banner-heba rounded-[20px] p-4 flex justify-between"><div><div class="font-black text-[14px]">🔥 عروض الهيبة اليوم</div><div class="text-[11px] opacity-80 mt-1">تحديد متعدد - لحد 12 صورة + حذف المكرر</div></div><div class="text-[36px]">👑</div></div>
 <div class="grid grid-cols-3 gap-3">
 <div class="glass rounded-2xl p-4 text-center"><div class="font-black text-[#a78bfa]" id="totalProducts">0</div><div class="text-[9px] opacity-60">المنتجات</div></div>
 <div class="glass rounded-2xl p-4 text-center"><div class="font-black text-green-400" id="totalOrdersDash">0</div><div class="text-[9px] opacity-60">الطلبات</div></div>
 <div class="glass rounded-2xl p-4 text-center"><div class="font-black text-[#ec4899]" id="totalProfitDash">0</div><div class="text-[9px] opacity-60">الارباح</div></div>
 </div>
-
 <div class="glass rounded-[20px] p-5">
-<div class="flex justify-between mb-4"><div class="font-black text-[13px]">➕ اضافة منتج جديد</div><button onclick="clearForm()" class="text-[10px] opacity-50">مسح</button></div>
+<div class="flex justify-between mb-4"><div class="font-black text-[13px]">➕ اضافة منتج جديد</div><button onclick="clearForm()" class="text-[10px] opacity-50">مسح الكل</button></div>
 <input type="hidden" id="editId">
 <div class="space-y-3">
 <input id="pName" placeholder="اسم المنتج" class="w-full p-3 rounded-xl text-[12px]">
 <div class="grid grid-cols-2 gap-3"><select id="pCat" class="w-full p-3 rounded-xl text-[12px]"><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option></select><input id="pStock" type="tel" placeholder="الكمية" class="w-full p-3 rounded-xl text-[12px]"></div>
 <div class="grid grid-cols-2 gap-3"><input id="pWhole" type="tel" placeholder="سعر الجملة *" class="w-full p-3 rounded-xl text-[12px] font-bold"><input id="pSell" type="tel" placeholder="سعر البيع الحالي *" class="w-full p-3 rounded-xl text-[12px] font-bold"></div>
 <div class="grid grid-cols-2 gap-3"><input id="pMinProfit" type="tel" placeholder="اقل ربح 1000" class="w-full p-3 rounded-xl text-[12px]"><input id="pMaxProfit" type="tel" placeholder="اعلى ربح 30000" class="w-full p-3 rounded-xl text-[12px]"></div>
-
 <div class="space-y-3">
-<div class="flex justify-between items-center"><div class="font-bold text-[11px]">📸 صور المنتج <span id="imgCount" class="text-[#a78bfa]">(0/12)</span></div><label for="fileInput" class="text-[10px] bg-[#7c3aed]/20 border border-[#7c3aed]/30 px-3 py-1 rounded-full cursor-pointer">+ من الاستوديو</label></div>
+<div class="flex justify-between items-center"><div class="font-bold text-[11px]">📸 صور المنتج <span id="imgCount" class="text-[#a78bfa]">(0/12)</span></div><label for="fileInput" class="text-[10px] bg-[#7c3aed]/20 border border-[#7c3aed]/30 px-3 py-1 rounded-full cursor-pointer">+ تحديد الكل من الاستوديو</label></div>
 <input type="file" id="fileInput" accept="image/*" multiple hidden>
-<div id="uploadBox" class="upload-box rounded-2xl p-6 text-center cursor-pointer"><div class="text-[28px]">🖼️</div><div class="font-black text-[11px] mt-2">اضغط لاختيار الصور</div><div class="text-[9px] opacity-50 mt-1">يدعم JPG, PNG, WEBP • لحد 12 صورة • تنضغط تلقائياً</div></div>
+<div id="uploadBox" class="upload-box rounded-2xl p-6 text-center cursor-pointer"><div class="text-[28px]">🖼️</div><div class="font-black text-[11px] mt-2">اضغط وحدد 12 صورة مرة وحدة</div><div class="text-[9px] opacity-50 mt-1">دوس دوسة طويلة على اول صورة وحدد البقية - يدعم التحديد المتعدد</div></div>
 <div id="previewGrid" class="grid grid-cols-4 gap-2"></div>
 <input id="pImageUrl" placeholder="او الصق رابط صورة (اختياري)" class="w-full p-3 rounded-xl text-[11px] opacity-60">
 <div id="err" class="hidden bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-xl text-[11px]"></div>
 </div>
-
 <div class="grid grid-cols-2 gap-3"><textarea id="pSpecs" placeholder="الصفات / المواصفات" class="w-full p-3 rounded-xl text-[11px] h-[90px]"></textarea><textarea id="pPromo" placeholder="الوصف الترويجي" class="w-full p-3 rounded-xl text-[11px] h-[90px]"></textarea></div>
 <button onclick="saveProduct()" id="saveBtn" class="w-full bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-4 rounded-xl font-black text-[13px]">حفظ المنتج ✅</button>
 </div>
 </div>
-
 <div class="flex justify-between px-1"><div class="font-black text-[12px]">📦 كل المنتجات</div><input id="searchAdmin" oninput="renderAdmin()" placeholder="بحث..." class="p-2 px-3 rounded-full text-[11px] w-[120px]"></div>
 <div id="adminGrid" class="grid grid-cols-1 gap-3"></div>
 </div>
 </div>
-
 <script>
 let defaultProducts=[{id:1,n:"ميزان مطبخ رقمي ذكي",whole:12000,sell:13000,c:"اجهزة المطبخ",i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",images:["https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"],s:85,minProfit:1000,maxProfit:30000,specs:"• يتحمل حتى 10 كغم",promo:"ميزان يجنن!"},{id:2,n:"سماعات ريلمي",whole:15000,sell:16000,c:"الكترونيات",i:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400",images:["https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400"],s:50,minProfit:1000,maxProfit:20000,specs:"• صوت نقي",promo:"سماعات اصلية!"}];
 let selectedImages=[];
@@ -69,8 +62,36 @@ function toNum(v){if(!v)return 0;v=v.toString().replace(/[٠-٩]/g,d=>"٠١٢٣�
 function compressImage(file){return new Promise(res=>{let reader=new FileReader();reader.onload=e=>{let img=new Image();img.onload=()=>{let canvas=document.createElement('canvas');let max=500;let w=img.width,h=img.height;if(w>h){if(w>max){h*=max/w;w=max;}}else{if(h>max){w*=max/h;h=max;}}canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);res(canvas.toDataURL('image/jpeg',0.5));};img.src=e.target.result;};reader.readAsDataURL(file);});}
 function getAllProducts(){let custom=JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");return [...defaultProducts,...custom];}
 function getCustomOnly(){return JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");}
-async function handleFiles(files){if(selectedImages.length + files.length > 12){alert("الحد 12 صورة فقط");return;}for(let file of files){if(!file.type.startsWith("image/"))continue;let comp=await compressImage(file);selectedImages.push(comp);}renderPreview();}
-function renderPreview(){document.getElementById("imgCount").innerText=`(${selectedImages.length}/12)`;document.getElementById("previewGrid").innerHTML=selectedImages.map((img,i)=>`<div class="relative card-heba rounded-xl overflow-hidden aspect-square"><img src="${img}" class="w-full h-full object-cover"><button onclick="selectedImages.splice(${i},1);renderPreview()" class="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full text-[10px]">✕</button><div class="absolute bottom-1 left-1 bg-black/70 text-[7px] px-1.5 py-0.5 rounded-full">${i==0?'رئيسية':i+1}</div><button onclick="let x=selectedImages.splice(${i},1)[0];selectedImages.unshift(x);renderPreview()" class="absolute inset-0 opacity-0"></button></div>`).join("");}
+
+async function handleFiles(files){
+ if(selectedImages.length + files.length > 12){alert("تكدر تضيف "+(12-selectedImages.length)+" بس بعد");return;}
+ let arr = Array.from(files);
+ for(let file of arr){
+  if(!file.type.startsWith("image/"))continue;
+  let comp = await compressImage(file);
+  selectedImages.push(comp);
+ }
+ renderPreview();
+}
+function renderPreview(){
+ document.getElementById("imgCount").innerText=`(${selectedImages.length}/12)`;
+ document.getElementById("previewGrid").innerHTML=selectedImages.map((img,i)=>`
+  <div class="relative card-heba rounded-xl overflow-hidden aspect-square">
+   <img src="${img}" class="w-full h-full object-cover">
+   <button type="button" onclick="removeImage(${i})" class="absolute top-1 right-1 w-7 h-7 bg-red-500 rounded-full text-[12px] flex items-center justify-center font-black shadow-lg z-20">✕</button>
+   <div class="absolute bottom-1 left-1 bg-black/80 text-[7px] px-2 py-1 rounded-full">${i==0?'⭐ رئيسية':i+1}</div>
+   ${i!=0?`<button type="button" onclick="makeMain(${i})" class="absolute bottom-1 right-1 bg-[#7c3aed] text-[6px] px-2 py-1 rounded-full z-20">رئيسية</button>`:''}
+  </div>`).join("");
+}
+function removeImage(index){
+ selectedImages.splice(index,1);
+ renderPreview();
+}
+function makeMain(index){
+ let img = selectedImages.splice(index,1)[0];
+ selectedImages.unshift(img);
+ renderPreview();
+}
 function saveProduct(){
  let id=document.getElementById("editId").value;
  let name=document.getElementById("pName").value.trim();
