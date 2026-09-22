@@ -2,283 +2,156 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>مزايا - لوحة التحكم</title>
+<title>مزايا - لوحة التحكم الحقيقية</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
-<style>
-body{font-family:Cairo;background:#0f0e1f;color:white}
-::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2a2750;border-radius:10px}
-.card{background:#1a1830;border:1px solid #2a2750;border-radius:18px}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+<style>body{font-family:Cairo;background:#0f0e1f;color:white}.card{background:#1a1830;border:1px solid #2a2750;border-radius:18px}</style>
 </head>
 <body class="bg-[#0f0e1f]">
-<div class="flex min-h-screen">
 
-<!-- سايدبار -->
-<div class="w-[260px] bg-[#151328] border-l border-[#2a2750] p-4 hidden md:block fixed h-full right-0 top-0 z-20">
-<div class="flex items-center justify-between mb-8">
-<div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#7c3aed] rounded-lg flex items-center justify-center font-black">M</div><div><div class="font-black text-[16px] text-[#a78bfa]">مزايا</div><div class="text-[9px] opacity-50">منصة مزايا B2B</div></div></div>
+<!-- تسجيل دخول ادمن ينحفظ -->
+<div id="adminLogin" class="fixed inset-0 z-[9999] bg-[#0f0e1f] flex items-center justify-center p-5">
+<div class="bg-[#1a1830] border border-[#2a2750] w-full max-w-[380px] rounded-[28px] p-8 text-center">
+<div class="w-16 h-16 bg-[#7c3aed] rounded-2xl mx-auto flex items-center justify-center font-black text-2xl">M</div>
+<div class="font-black text-[20px] mt-4">دخول الادمن - مزايا</div>
+<div class="text-[11px] opacity-60 mt-2">سجل دخولك لإدارة موقعك الحقيقي</div>
+<div class="mt-6 space-y-3 text-right">
+<input id="adminUser" placeholder="اسم المستخدم: admin" class="w-full p-4 bg-[#151328] border border-[#2a2750] rounded-2xl text-[13px] outline-none">
+<input id="adminPass" type="password" placeholder="كلمة السر: mazaya123" class="w-full p-4 bg-[#151328] border border-[#2a2750] rounded-2xl text-[13px] outline-none">
+<button onclick="adminLogin()" class="w-full bg-[#7c3aed] py-4 rounded-2xl font-black text-[13px]">دخول للوحة التحكم 🔐</button>
+<div class="text-[10px] opacity-50 text-center mt-3">اليوزر: admin<br>الباس: mazaya123</div>
+</div>
+</div>
 </div>
 
-<div class="space-y-1">
-<div class="bg-[#7c3aed] text-white px-4 py-3 rounded-xl text-[12px] font-bold flex items-center justify-between"><span>لوحة التحكم</span><span>⊞</span></div>
-<button onclick="showSection('products')" class="w-full text-right px-4 py-3 rounded-xl text-[12px] opacity-60 hover:bg-[#1e1c38] flex justify-between"><span>إدارة المنتجات</span><span>📦</span></button>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>الطلبات</span><span class="bg-[#7c3aed] text-white px-2 rounded-full text-[10px]">12</span></div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>قائمة المروجين</span><span>👥</span></div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>مستويات المخزون</span><span>📊</span></div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60">التحليلات والتقارير</div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60">العملاء</div>
-<div class="px-4 py-2 text-[11px] opacity-40 mt-4">الإعدادات</div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>الإعدادات</span><span>⚙️</span></div>
-<div class="px-4 py-3 rounded-xl text-[12px] opacity-60 flex justify-between"><span>المساعدة والدعم</span><span>❓</span></div>
-<div class="mt-6 bg-gradient-to-br from-[#7c3aed] to-[#5b21b6] p-4 rounded-2xl text-center">
-<div class="text-[11px] font-bold leading-5">ترقية إلى الخطة الاحترافية<br><span class="opacity-70 text-[10px]">احصل على تقارير مفصلة وتحليلات أعمق</span></div>
-<button class="mt-3 bg-white text-[#7c3aed] px-4 py-1.5 rounded-full text-[11px] font-black">ترقية الآن</button>
+<div class="flex min-h-screen">
+<!-- سايدبار -->
+<div class="w-[260px] bg-[#151328] border-l border-[#2a2750] p-4 hidden md:block fixed h-full right-0 top-0">
+<div class="flex items-center gap-2 mb-8"><div class="w-8 h-8 bg-[#7c3aed] rounded-lg flex items-center justify-center font-black">M</div><div class="font-black text-[#a78bfa]">مزايا</div></div>
+<button class="w-full bg-[#7c3aed] px-4 py-3 rounded-xl text-[12px] font-bold text-right">📊 لوحة التحكم - بيانات حقيقية</button>
+<a href="index.html" target="_blank" class="block w-full mt-2 bg-[#1e1c38] px-4 py-3 rounded-xl text-[12px] text-right">🏪 فتح المتجر الحقيقي</a>
+<button onclick="adminLogout()" class="w-full mt-6 bg-red-500/20 text-red-400 border border-red-500/30 px-4 py-3 rounded-xl text-[11px]">🚪 تسجيل خروج</button>
+<div class="mt-6 bg-[#1a1830] p-3 rounded-xl border border-[#2a2750]">
+<div class="text-[11px] font-bold">معلومات موقعك الحقيقية:</div>
+<div class="text-[10px] opacity-70 mt-2 space-y-1">
+<div>📦 المنتجات: <span id="realCount1">0</span></div>
+<div>💰 قيمة المخزون: <span id="realValue">0</span></div>
+<div>⚠️ منتجات قليلة: <span id="lowStock">0</span></div>
 </div>
 </div>
 </div>
 
 <!-- محتوى -->
-<div class="flex-1 md:mr-[260px] p-3 md:p-5">
+<div class="flex-1 md:mr-[260px] p-4">
+<div class="flex justify-between items-center mb-4"><div class="font-black text-[18px]">لوحة التحكم - بيانات موقعك الحقيقية</div><button onclick="openAddModal()" class="bg-[#7c3aed] px-5 py-2.5 rounded-full text-[12px] font-bold">+ اضافة منتج حقيقي</button></div>
 
-<!-- هيدر -->
-<div class="flex justify-between items-center mb-5">
-<div class="flex items-center gap-3"><img src="https://i.pravatar.cc/100" class="w-9 h-9 rounded-full"><span class="font-bold text-[13px]">مرحباً، أحمد</span><span class="text-[10px] opacity-50">▼</span></div>
-<div class="flex items-center gap-3"><span class="text-xl">⚙️</span><div class="relative"><span class="text-xl">🔔</span><span class="absolute -top-1 -right-1 bg-[#7c3aed] text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center">2</span></div><span class="text-xl">🔍</span></div>
+<!-- احصائيات حقيقية 100% -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+<div class="card p-4 text-center"><div class="text-[11px] opacity-60">عدد منتجاتك الحقيقي</div><div id="statTotal" class="font-black text-[24px] mt-1 text-[#a78bfa]">0</div><div class="text-[10px] opacity-50">من localStorage</div></div>
+<div class="card p-4 text-center"><div class="text-[11px] opacity-60">اجمالي كمية المخزون</div><div id="statQty" class="font-black text-[24px] mt-1">0</div></div>
+<div class="card p-4 text-center"><div class="text-[11px] opacity-60">قيمة المخزون بالجملة</div><div id="statWhole" class="font-black text-[18px] mt-1">0 د.ع</div></div>
+<div class="card p-4 text-center"><div class="text-[11px] opacity-60">منتجات تحتاج تعبئة</div><div id="statLow" class="font-black text-[24px] mt-1 text-red-400">0</div><div class="text-[10px]">اقل من 20 قطعة</div></div>
 </div>
 
-<!-- عنوان اللوحة -->
-<div class="flex justify-between items-center mb-4">
-<div class="font-black text-[18px]">لوحة التحكم</div>
-<div class="flex gap-2"><button class="bg-[#1a1830] border border-[#2a2750] px-3 py-1.5 rounded-full text-[11px]">فلترة ▾</button><button class="bg-[#7c3aed] px-3 py-1.5 rounded-full text-[11px] font-bold">تصدير التقرير ↓</button></div>
-</div>
-<div class="text-[12px] opacity-60 mb-4">نظرة عامة على أداء منصة مزايا - نوفمبر 2024</div>
-
-<!-- كروت الاحصائيات -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
-<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center text-[#a78bfa] mb-2">📦</div><div class="text-[11px] opacity-60">مستوى المخزون</div><div class="font-black text-[20px] mt-1">82%</div><div class="text-[10px] text-red-400 mt-1">-3% • 23 منتج منخفض</div></div>
-<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">👥</div><div class="text-[11px] opacity-60">المروجين النشطين</div><div class="font-black text-[20px] mt-1">56</div><div class="text-[10px] text-green-400 mt-1">+5 • 7 مروجين جدد هذا الأسبوع</div></div>
-<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">🛒</div><div class="text-[11px] opacity-60">الطلبات</div><div class="font-black text-[20px] mt-1">348</div><div class="text-[10px] text-green-400 mt-1">+8% • 32 طلب جديد اليوم</div></div>
-<div class="card p-4 text-center"><div class="w-10 h-10 bg-[#2a1a5a] rounded-xl mx-auto flex items-center justify-center mb-2">📈</div><div class="text-[11px] opacity-60">إجمالي المبيعات</div><div class="font-black text-[20px] mt-1">1.24 د.إ</div><div class="text-[10px] text-green-400 mt-1">+12.4% <span class="text-[9px] opacity-50">مقارنة بالشهر الماضي -3%</span></div></div>
-</div>
-
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
-<!-- يسار -->
-<div class="lg:col-span-2 space-y-4">
-
-<!-- رسم + جدول -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- ادارة -->
 <div class="card p-4">
-<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">المبيعات الشهرية</div><div class="flex items-center gap-2"><div class="flex items-center gap-1"><div class="w-2 h-2 bg-[#a78bfa] rounded-full"></div><span class="text-[10px]">الطلبات</span></div><select class="bg-[#211f3f] text-[10px] px-2 py-1 rounded-full border"><option>آخر 6 أشهر</option></select></div></div>
-<canvas id="salesChart" height="180"></canvas>
+<div class="flex flex-wrap gap-2 mb-4 bg-[#151328] p-3 rounded-xl">
+<input type="file" id="excelFile" accept=".xlsx,.xls,.csv" class="text-[11px] bg-[#211f3f] p-2 rounded-lg">
+<button onclick="importExcel()" class="bg-green-600 px-3 py-2 rounded-full text-[11px]">استيراد Excel 📥</button>
+<button onclick="downloadTemplate()" class="bg-[#211f3f] border px-3 py-2 rounded-full text-[10px]">📄 نموذج Excel</button>
+<button onclick="exportProducts()" class="bg-[#211f3f] border px-3 py-2 rounded-full text-[10px]">📤 تصدير منتجاتك</button>
+<button onclick="clearAll()" class="bg-red-900/30 border border-red-500/30 px-3 py-2 rounded-full text-[10px]">🗑️ مسح الكل</button>
 </div>
 
-<div class="card p-3 overflow-auto">
-<div class="flex text-[10px] opacity-50 border-b border-[#2a2750] pb-2 mb-2 gap-2"><div class="flex-1">المنتج</div><div class="w-10">الكمية</div><div class="w-20">مستوى المخزون</div><div class="w-12">السعر</div><div class="w-12">الحالة</div></div>
-<div id="miniProducts"></div>
+<div class="grid grid-cols-2 gap-2 mb-4">
+<input id="globalMin" type="number" value="3000" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]" placeholder="اقل ربح للكل">
+<input id="globalMax" type="number" value="15000" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]" placeholder="اكثر ربح للكل">
 </div>
-</div>
-
-<!-- ادارة المنتجات الكاملة -->
-<div class="card p-4" id="productsSection">
-<div class="flex justify-between items-center mb-4">
-<div class="font-bold text-[14px]">إدارة المنتجات <span id="totalCount" class="bg-[#7c3aed] text-white px-2 py-0.5 rounded-full text-[11px] mr-2">0</span></div>
-<button onclick="openAddModal()" class="bg-[#7c3aed] px-4 py-2 rounded-full text-[11px] font-bold">+ اضافة منتج جديد</button>
-</div>
-
-<!-- رفع اكسل -->
-<div class="bg-[#151328] p-3 rounded-xl border border-[#2a2750] mb-4 flex flex-wrap gap-2 items-center">
-<input type="file" id="excelFile" accept=".xlsx,.xls,.csv" class="text-[11px] bg-[#211f3f] p-1.5 rounded-lg">
-<button onclick="importExcel()" class="bg-green-600 px-3 py-1.5 rounded-full text-[11px]">استيراد Excel 📥</button>
-<button onclick="downloadTemplate()" class="bg-[#211f3f] border px-3 py-1.5 rounded-full text-[10px]">📄 نموذج</button>
-<button onclick="exportProducts()" class="bg-[#211f3f] border px-3 py-1.5 rounded-full text-[10px]">📤 تصدير</button>
-<div class="w-full grid grid-cols-2 gap-2 mt-2">
-<input id="globalMin" type="number" value="3000" placeholder="اقل ربح" class="p-2 rounded-lg bg-[#211f3f] border border-[#2a2750] text-[11px]">
-<input id="globalMax" type="number" value="15000" placeholder="اكثر ربح" class="p-2 rounded-lg bg-[#211f3f] border border-[#2a2750] text-[11px]">
-</div>
-<button onclick="applyGlobal()" class="w-full mt-2 bg-[#7c3aed]/20 border border-[#7c3aed]/50 py-2 rounded-xl text-[11px]">طبق الادنى والاكثر على كل المنتجات</button>
-</div>
+<button onclick="applyGlobal()" class="w-full bg-[#7c3aed]/20 border border-[#7c3aed] py-3 rounded-xl text-[12px] font-bold mb-4">تطبيق اقل واكثر ربح على كل منتجاتك الحقيقية</button>
 
 <div class="flex gap-2 mb-3">
-<input id="searchBox" oninput="render()" placeholder="🔍 ابحث..." class="flex-1 p-2.5 rounded-xl bg-[#151328] border border-[#2a2750] text-[11px]">
-<select id="filterCat" onchange="render()" class="p-2.5 rounded-xl bg-[#151328] border border-[#2a2750] text-[11px]"><option value="">كل الاصناف</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option><option>عدد وادوات</option><option>ادوات رياضية</option><option>اثاث</option><option>انارة و اضاءة</option></select>
+<input id="searchBox" oninput="render()" placeholder="🔍 ابحث بمنتجاتك الحقيقية..." class="flex-1 p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<select id="filterCat" onchange="render()" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[11px]"><option value="">كل الاصناف</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option><option>عدد وادوات</option><option>ادوات رياضية</option><option>اثاث</option><option>انارة و اضاءة</option><option>ادوات منزلية</option><option>ادوات مطبخ</option></select>
 </div>
-
-<div id="list" class="space-y-2 max-h-[500px] overflow-auto"></div>
+<div id="list" class="space-y-3 max-h-[700px] overflow-auto"></div>
 </div>
-
-</div>
-
-<!-- يمين -->
-<div class="space-y-4">
-
-<!-- احدث الطلبات -->
-<div class="card p-4">
-<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">أحدث الطلبات</div><span class="text-[11px] text-[#a78bfa] cursor-pointer">عرض الكل</span></div>
-<div class="space-y-3 text-[11px]">
-<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9241</div><div class="opacity-60 text-[10px]">شركة الخليج للتجارة<br>منذ 12 دقيقة - 1,240 د.إ</div></div><span class="bg-[#7c3aed] px-2.5 py-1 rounded-full text-[9px]">جديد</span></div>
-<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9238</div><div class="opacity-60 text-[10px]">مؤسسة النخبة المحدودة<br>منذ 45 دقيقة - 850 د.إ</div></div><span class="bg-[#4a3a8a] px-2.5 py-1 rounded-full text-[9px]">قيد المعالجة</span></div>
-<div class="flex justify-between items-start border-b border-[#2a2750]/50 pb-2"><div><div class="font-bold">#ORD-9229</div><div class="opacity-60 text-[10px]">شركة الاستيراد<br>منذ 2 ساعة - 2,100 د.إ</div></div><span class="bg-green-600 px-2.5 py-1 rounded-full text-[9px]">مكتمل</span></div>
-<div class="flex justify-between items-start"><div><div class="font-bold">#ORD-9221</div><div class="opacity-60 text-[10px]">شركة البداية<br>منذ 4 ساعات - 560 د.إ</div></div><span class="bg-gray-600 px-2.5 py-1 rounded-full text-[9px]">ملغي</span></div>
 </div>
 </div>
 
-<!-- افضل المروجين -->
-<div class="card p-4">
-<div class="flex justify-between items-center mb-3"><div class="font-bold text-[13px]">أفضل المروجين</div><span class="text-[11px] text-[#a78bfa] cursor-pointer">عرض الكل</span></div>
+<!-- مودال اضافة منتج حقيقي -->
+<div id="addModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4">
+<div class="bg-[#1a1830] border border-[#2a2750] rounded-[24px] w-full max-w-[500px] max-h-[92vh] overflow-auto p-6">
+<div class="flex justify-between items-center mb-4"><div class="font-black">➕ اضافة منتج حقيقي لموقعك</div><button onclick="closeAddModal()" class="w-8 h-8 bg-[#211f3f] rounded-full">✕</button></div>
 <div class="space-y-3">
-<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#7c3aed] rounded-full flex items-center justify-center text-[10px] font-bold">أش</div><div><div class="text-[11px] font-bold">أحمد الشمري</div><div class="text-[10px] opacity-50">42 عميل - 128 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+15.2%</span></div>
-<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#4a3a8a] rounded-full flex items-center justify-center text-[10px] font-bold">سم</div><div><div class="text-[11px] font-bold">سارة المطيري</div><div class="text-[10px] opacity-50">36 عميل - 98 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+9.8%</span></div>
-<div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 bg-[#3a2a5a] rounded-full flex items-center justify-center text-[10px] font-bold">خع</div><div><div class="text-[11px] font-bold">خالد العتيبي</div><div class="text-[10px] opacity-50">29 عميل - 76 عملية</div></div></div><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-[10px]">+5.4%</span></div>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- مودال اضافة منتج مع رفع صورة -->
-<div id="addModal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center p-4">
-<div class="bg-[#1a1830] border border-[#2a2750] rounded-[24px] w-full max-w-[480px] max-h-[90vh] overflow-auto p-5">
-<div class="flex justify-between items-center mb-4"><div class="font-black text-[15px]">➕ اضافة منتج جديد</div><button onclick="closeAddModal()" class="w-8 h-8 bg-[#211f3f] rounded-full">✕</button></div>
-
-<div class="space-y-3">
-<!-- رفع صورة من الاستوديو -->
-<div>
-<label class="text-[11px] font-bold opacity-70">📸 صورة المنتج - ارفع من الاستوديو</label>
-<div id="imagePreview" class="mt-2 w-full h-40 bg-[#151328] border-2 border-dashed border-[#2a2750] rounded-2xl flex flex-col items-center justify-center cursor-pointer overflow-hidden" onclick="document.getElementById('imageInput').click()">
-<div id="previewPlaceholder" class="text-center"><div class="text-3xl">📷</div><div class="text-[11px] opacity-60 mt-1">اضغط لاختيار صورة من الاستوديو</div><div class="text-[9px] opacity-40">JPG, PNG</div></div>
-<img id="previewImg" class="w-full h-full object-cover hidden">
-</div>
-<input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-<input id="pImg" type="hidden">
-</div>
-
-<input id="pName" placeholder="اسم المنتج - مثال: ميزان مطبخ رقمي" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
-<textarea id="pDesc" placeholder="وصف المنتج - اكتب وصف مفصل للمنتج..." rows="3" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px] resize-none"></textarea>
+<div><label class="text-[11px] font-bold">📸 صورة المنتج - من الاستوديو مباشر</label>
+<div id="imagePreview" onclick="document.getElementById('imageInput').click()" class="mt-2 w-full h-44 bg-[#151328] border-2 border-dashed border-[#7c3aed]/50 rounded-2xl flex flex-col items-center justify-center cursor-pointer overflow-hidden">
+<div id="previewPlaceholder" class="text-center"><div class="text-4xl">📷</div><div class="text-[11px] opacity-70 mt-2">اضغط لاختيار صورة من الاستوديو</div><div class="text-[9px] opacity-40">الصورة راح تنحفظ داخل الموقع بدون رابط</div></div>
+<img id="previewImg" class="w-full h-full object-cover hidden"></div>
+<input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImage(event)"><input id="pImg" type="hidden"></div>
+<input id="pName" placeholder="اسم المنتج الحقيقي - مثال: سماعة بلوتوث" class="w-full p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[13px]">
+<textarea id="pDesc" placeholder="وصف المنتج التفصيلي - هذا الوصف راح يطلع بالمتجر" rows="4" class="w-full p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]"></textarea>
 <div class="grid grid-cols-2 gap-2">
-<input id="pWhole" type="number" placeholder="سعر الجملة 16500" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
-<input id="pSell" type="number" placeholder="سعر البيع 25000" class="p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<input id="pWhole" type="number" placeholder="سعر الجملة 15000" class="p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<input id="pSell" type="number" placeholder="سعر البيع 25000" class="p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
 </div>
 <div class="grid grid-cols-2 gap-2">
-<input id="pMin" type="number" placeholder="اقل ربح 3000" class="p-3 rounded-xl bg-red-900/20 border border-red-500/30 text-[12px]">
-<input id="pMax" type="number" placeholder="اكثر ربح 15000" class="p-3 rounded-xl bg-green-900/20 border border-green-500/30 text-[12px]">
+<input id="pMin" type="number" value="3000" placeholder="اقل ربح" class="p-4 rounded-xl bg-red-900/20 border border-red-500/30 text-[12px]">
+<input id="pMax" type="number" value="15000" placeholder="اكثر ربح" class="p-4 rounded-xl bg-green-900/20 border border-green-500/30 text-[12px]">
 </div>
-<select id="pCat" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<select id="pCat" class="w-full p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
 <option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option><option>عدد وادوات</option><option>ادوات رياضية</option><option>اثاث</option><option>انارة و اضاءة</option><option>ادوات منزلية</option><option>ادوات مطبخ</option>
 </select>
-<input id="pStock" type="number" placeholder="الكمية - 100" class="w-full p-3 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
-
-<button onclick="addOne()" class="w-full bg-[#7c3aed] py-3.5 rounded-xl font-black text-[13px] mt-2">حفظ المنتج ✅</button>
+<input id="pStock" type="number" value="50" placeholder="الكمية" class="w-full p-4 rounded-xl bg-[#151328] border border-[#2a2750] text-[12px]">
+<button onclick="addOne()" class="w-full bg-[#7c3aed] py-4 rounded-xl font-black text-[14px]">حفظ المنتج في موقعك الحقيقي ✅</button>
 </div>
 </div>
 </div>
 
 <script>
-let uploadedImageBase64 = "";
-function handleImageUpload(e){
-let file=e.target.files[0]; if(!file) return;
-let reader=new FileReader();
-reader.onload=function(ev){
-uploadedImageBase64=ev.target.result;
-document.getElementById("previewImg").src=uploadedImageBase64;
-document.getElementById("previewImg").classList.remove("hidden");
-document.getElementById("previewPlaceholder").classList.add("hidden");
-document.getElementById("pImg").value=uploadedImageBase64;
-};
-reader.readAsDataURL(file);
-}
-function openAddModal(){document.getElementById("addModal").classList.remove("hidden");}
-function closeAddModal(){document.getElementById("addModal").classList.add("hidden");}
-
+function checkAdmin(){let l=localStorage.getItem("mazaya_admin_login"); if(l==="true"){document.getElementById("adminLogin").style.display="none";}else{document.getElementById("adminLogin").style.display="flex";}}
+function adminLogin(){let u=document.getElementById("adminUser").value.trim(); let p=document.getElementById("adminPass").value.trim(); if(u==="admin" && p==="mazaya123"){localStorage.setItem("mazaya_admin_login","true"); localStorage.setItem("mazaya_admin_time",Date.now().toString()); document.getElementById("adminLogin").style.display="none"; alert("تم تسجيل الدخول وينحفظ ✅");}else{alert("خطأ - اليوزر: admin والباس: mazaya123");}}
+function adminLogout(){if(confirm("تسجيل خروج؟")){localStorage.removeItem("mazaya_admin_login"); location.reload();}}
+let imgBase64="";
+function handleImage(e){let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(ev){imgBase64=ev.target.result; document.getElementById("previewImg").src=imgBase64; document.getElementById("previewImg").classList.remove("hidden"); document.getElementById("previewPlaceholder").classList.add("hidden"); document.getElementById("pImg").value=imgBase64;}; r.readAsDataURL(f);}
+function openAddModal(){document.getElementById("addModal").classList.remove("hidden");} function closeAddModal(){document.getElementById("addModal").classList.add("hidden");}
 function getP(){return JSON.parse(localStorage.getItem("mazaya_custom_products")||"[]");}
-function saveP(p){localStorage.setItem("mazaya_custom_products",JSON.stringify(p)); render(); renderMini();}
-
-function addOne(){
-let n=document.getElementById("pName").value.trim();
-let desc=document.getElementById("pDesc").value.trim();
-let w=parseInt(document.getElementById("pWhole").value)||0;
-let s=parseInt(document.getElementById("pSell").value)||0;
-let minP=parseInt(document.getElementById("pMin").value)||3000;
-let maxP=parseInt(document.getElementById("pMax").value)||15000;
-let c=document.getElementById("pCat").value;
-let img=document.getElementById("pImg").value.trim()||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400";
-let st=parseInt(document.getElementById("pStock").value)||50;
-if(!n||!w){alert("اكتب اسم المنتج وسعر الجملة");return;}
-let arr=getP();
-arr.push({id:Date.now(),n,desc,whole:w,sell:s||w+minP,c,i:img,s:st,minProfit:minP,maxProfit:maxP});
-saveP(arr);
-document.getElementById("pName").value="";document.getElementById("pDesc").value="";document.getElementById("pWhole").value="";document.getElementById("pSell").value="";document.getElementById("pMin").value="";document.getElementById("pMax").value="";document.getElementById("pStock").value="";document.getElementById("pImg").value="";uploadedImageBase64="";document.getElementById("previewImg").classList.add("hidden");document.getElementById("previewPlaceholder").classList.remove("hidden");
-closeAddModal();
-alert("تمت الاضافة ✅");
-}
-
-function applyGlobal(){
-let minP=parseInt(document.getElementById("globalMin").value)||3000;
-let maxP=parseInt(document.getElementById("globalMax").value)||15000;
-if(!confirm("تطبق اقل ربح "+minP+" واكثر ربح "+maxP+" على كل المنتجات؟"))return;
-let arr=getP(); arr=arr.map(p=>({...p,minProfit:minP,maxProfit:maxP})); saveP(arr); alert("تم على "+arr.length);
-}
-function importExcel(){
-let file=document.getElementById("excelFile").files[0]; if(!file){alert("اختار ملف");return;}
-let reader=new FileReader();
-reader.onload=function(e){
-let data=new Uint8Array(e.target.result); let wb=XLSX.read(data,{type:"array"}); let sheet=wb.Sheets[wb.SheetNames[0]]; let json=XLSX.utils.sheet_to_json(sheet);
-let arr=getP(); let c=0;
-json.forEach(row=>{
-let name=row["الاسم"]||Object.values(row)[0]; let whole=row["سعر الجملة"]||Object.values(row)[1]; let sell=row["سعر البيع"]||Object.values(row)[2]; let minP=row["اقل ربح"]||3000; let maxP=row["اكثر ربح"]||15000; let cat=row["الصنف"]||"جميع المنتجات"; let img=row["رابط الصورة"]||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"; let stock=row["الكمية"]||50; let desc=row["الوصف"]||"";
-if(name&&whole){arr.push({id:Date.now()+c++,n:String(name),desc:String(desc),whole:parseInt(whole),sell:parseInt(sell)||parseInt(whole)+parseInt(minP),c:String(cat),i:String(img),s:parseInt(stock)||50,minProfit:parseInt(minP),maxProfit:parseInt(maxP)});}
-}); saveP(arr); alert("تم "+c);
-}; reader.readAsArrayBuffer(file);
-}
-function downloadTemplate(){let data=[["الاسم","سعر الجملة","سعر البيع","اقل ربح","اكثر ربح","الصنف","الوصف","رابط الصورة","الكمية"],["ميزان مطبخ",16500,25000,3000,10000,"اجهزة المطبخ","ميزان دقيق للمطبخ","https://...jpg",100]]; let ws=XLSX.utils.aoa_to_sheet(data); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجات"); XLSX.writeFile(wb,"مزايا_نموذج.xlsx");}
-function exportProducts(){let arr=getP(); if(!arr.length){alert("ماكو");return;} let ws=XLSX.utils.json_to_sheet(arr.map(p=>({"الاسم":p.n,"جملة":p.whole,"بيع":p.sell,"اقل ربح":p.minProfit,"اكثر ربح":p.maxProfit,"الصنف":p.c,"الوصف":p.desc||""}))); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجات"); XLSX.writeFile(wb,"تصدير.xlsx");}
-function del(id){if(confirm("حذف؟"))saveP(getP().filter(x=>x.id!==id));}
-function showSection(s){document.getElementById("productsSection").scrollIntoView({behavior:"smooth"});}
-
+function saveP(p){localStorage.setItem("mazaya_custom_products",JSON.stringify(p)); render();}
+function addOne(){let n=document.getElementById("pName").value.trim(); let desc=document.getElementById("pDesc").value.trim(); let w=parseInt(document.getElementById("pWhole").value)||0; let s=parseInt(document.getElementById("pSell").value)||0; let minP=parseInt(document.getElementById("pMin").value)||3000; let maxP=parseInt(document.getElementById("pMax").value)||15000; let c=document.getElementById("pCat").value; let img=document.getElementById("pImg").value||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"; let st=parseInt(document.getElementById("pStock").value)||50; if(!n||!w){alert("اكتب اسم المنتج وسعر الجملة - هذني مطلوبة");return;} let arr=getP(); arr.push({id:Date.now(),n,desc,whole:w,sell:s||w+minP,c,i:img,s:st,minProfit:minP,maxProfit:maxP}); saveP(arr); document.getElementById("pName").value="";document.getElementById("pDesc").value="";document.getElementById("pWhole").value="";document.getElementById("pSell").value="";document.getElementById("pMin").value="3000";document.getElementById("pMax").value="15000";document.getElementById("pStock").value="50";document.getElementById("pImg").value="";imgBase64="";document.getElementById("previewImg").classList.add("hidden");document.getElementById("previewPlaceholder").classList.remove("hidden"); closeAddModal(); alert("✅ تم حفظ المنتج الحقيقي - هسه روح للمتجر راح تشوفه");}
+function applyGlobal(){let minP=parseInt(document.getElementById("globalMin").value)||3000; let maxP=parseInt(document.getElementById("globalMax").value)||15000; if(!confirm("تطبق على كل منتجاتك؟"))return; let arr=getP(); arr=arr.map(p=>({...p,minProfit:minP,maxProfit:maxP})); saveP(arr); alert("تم تطبيق على "+arr.length+" منتج حقيقي");}
+function importExcel(){let file=document.getElementById("excelFile").files[0]; if(!file){alert("اختار ملف Excel");return;} let reader=new FileReader(); reader.onload=function(e){let data=new Uint8Array(e.target.result); let wb=XLSX.read(data,{type:"array"}); let sheet=wb.Sheets[wb.SheetNames[0]]; let json=XLSX.utils.sheet_to_json(sheet); let arr=getP(); let cnt=0; json.forEach(row=>{let name=row["الاسم"]||Object.values(row)[0]; let whole=row["سعر الجملة"]||Object.values(row)[1]; let sell=row["سعر البيع"]||Object.values(row)[2]; let minP=row["اقل ربح"]||3000; let maxP=row["اكثر ربح"]||15000; let cat=row["الصنف"]||"الكترونيات"; let img=row["رابط الصورة"]||"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"; let stock=row["الكمية"]||50; let desc=row["الوصف"]||""; if(name&&whole){arr.push({id:Date.now()+cnt++,n:String(name),desc:String(desc),whole:parseInt(whole),sell:parseInt(sell)||parseInt(whole)+3000,c:String(cat),i:String(img),s:parseInt(stock)||50,minProfit:parseInt(minP),maxProfit:parseInt(maxP)});}}); saveP(arr); alert("تم استيراد "+cnt+" منتج حقيقي");}; reader.readAsArrayBuffer(file);}
+function downloadTemplate(){let data=[["الاسم","سعر الجملة","سعر البيع","اقل ربح","اكثر ربح","الصنف","الوصف","رابط الصورة","الكمية"],["ميزان مطبخ رقمي",16500,25000,3000,10000,"اجهزة المطبخ","ميزان حساس ودقيق","https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",100]]; let ws=XLSX.utils.aoa_to_sheet(data); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجات"); XLSX.writeFile(wb,"مزايا_نموذج_حقيقي.xlsx");}
+function exportProducts(){let arr=getP(); if(!arr.length){alert("ماكو منتجات حقيقية");return;} let ws=XLSX.utils.json_to_sheet(arr.map(p=>({"الاسم":p.n,"سعر الجملة":p.whole,"سعر البيع":p.sell,"اقل ربح":p.minProfit,"اكثر ربح":p.maxProfit,"الصنف":p.c,"الوصف":p.desc||"","الكمية":p.s}))); let wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,"منتجاتك"); XLSX.writeFile(wb,"منتجات_مزايا_الحقيقية.xlsx");}
+function clearAll(){if(confirm("متأكد تمسح كل منتجاتك الحقيقية؟ لا يمكن الاسترجاع!")){localStorage.removeItem("mazaya_custom_products"); render();}}
+function del(id){if(confirm("تحذف هذا المنتج الحقيقي؟")){saveP(getP().filter(x=>x.id!==id));}}
+function editProduct(id){let arr=getP(); let p=arr.find(x=>x.id==id); if(!p) return; let newName=prompt("اسم المنتج:",p.n); if(newName===null) return; let newWhole=parseInt(prompt("سعر الجملة:",p.whole))||p.whole; let newSell=parseInt(prompt("سعر البيع:",p.sell))||p.sell; let newDesc=prompt("الوصف:",p.desc||"")||p.desc; let newStock=parseInt(prompt("الكمية:",p.s))||p.s; p.n=newName; p.whole=newWhole; p.sell=newSell; p.desc=newDesc; p.s=newStock; saveP(arr);}
 function render(){
-let arr=getP(); let q=document.getElementById("searchBox").value.toLowerCase(); let fc=document.getElementById("filterCat").value;
-let filtered=arr.filter(p=>(!q||p.n.toLowerCase().includes(q))&&(!fc||p.c===fc));
-document.getElementById("totalCount").innerText=filtered.length;
+let arr=getP(); let q=(document.getElementById("searchBox").value||"").toLowerCase(); let fc=document.getElementById("filterCat").value;
+let filtered=arr.filter(p=>(!q||p.n.toLowerCase().includes(q) || (p.desc||"").toLowerCase().includes(q))&&(!fc||p.c===fc));
+document.getElementById("statTotal").innerText=arr.length; document.getElementById("realCount1").innerText=arr.length;
+let totalQty=arr.reduce((s,p)=>s+(p.s||0),0); document.getElementById("statQty").innerText=totalQty;
+let totalValue=arr.reduce((s,p)=>s+((p.whole||0)*(p.s||0)),0); document.getElementById("statWhole").innerText=totalValue.toLocaleString()+" د.ع"; document.getElementById("realValue").innerText=totalValue.toLocaleString();
+let low=arr.filter(p=>(p.s||0)<20).length; document.getElementById("statLow").innerText=low; document.getElementById("lowStock").innerText=low;
 document.getElementById("list").innerHTML=filtered.slice().reverse().map(p=>`
-<div class="bg-[#151328] p-3 rounded-xl border border-[#2a2750] flex gap-3 items-start">
-<img src="${p.i}" class="w-14 h-14 rounded-xl object-cover bg-white">
+<div class="bg-[#151328] p-4 rounded-xl border border-[#2a2750] flex gap-3">
+<img src="${p.i}" class="w-20 h-20 rounded-xl object-cover bg-white">
 <div class="flex-1">
-<div class="font-bold text-[12px]">${p.n}</div>
-<div class="text-[10px] opacity-60 mt-1 line-clamp-2">${p.desc||"بدون وصف"}</div>
+<div class="font-bold text-[13px]">${p.n}</div>
+<div class="text-[11px] opacity-60 mt-1 line-clamp-2">${p.desc||"بدون وصف"}</div>
 <div class="flex gap-2 mt-2 flex-wrap">
-<span class="bg-[#211f3f] px-2 py-1 rounded-full text-[9px]">${p.c}</span>
-<span class="bg-red-900/30 text-red-300 px-2 py-1 rounded-full text-[9px]">ادنى ${ (p.minProfit||0).toLocaleString()}</span>
-<span class="bg-green-900/30 text-green-300 px-2 py-1 rounded-full text-[9px]">اكثر ${ (p.maxProfit||0).toLocaleString()}</span>
+<span class="bg-[#211f3f] px-2 py-1 rounded-full text-[10px]">${p.c}</span>
+<span class="bg-red-900/30 text-red-300 px-2 py-1 rounded-full text-[10px]">ادنى ${p.minProfit.toLocaleString()}</span>
+<span class="bg-green-900/30 text-green-300 px-2 py-1 rounded-full text-[10px]">اكثر ${p.maxProfit.toLocaleString()}</span>
 </div>
-<div class="text-[10px] mt-1">جملة ${p.whole.toLocaleString()} | بيع ${p.sell.toLocaleString()} | كمية ${p.s}</div>
+<div class="text-[11px] mt-2">جملة <b>${p.whole.toLocaleString()}</b> | بيع <b class="text-[#a78bfa]">${p.sell.toLocaleString()}</b> | كمية <b>${p.s}</b> | ربح <b class="text-green-400">${(p.sell-p.whole).toLocaleString()}</b></div>
 </div>
-<button onclick="del(${p.id})" class="w-8 h-8 bg-red-500/10 text-red-400 rounded-full text-[12px]">✕</button>
-</div>`).join("")||"<div class='text-center opacity-30 text-xs py-10'>ماكو منتجات - اضغط اضافة منتج جديد</div>";
+<div class="flex flex-col gap-2">
+<button onclick="editProduct(${p.id})" class="w-8 h-8 bg-[#211f3f] rounded-full">✏️</button>
+<button onclick="del(${p.id})" class="w-8 h-8 bg-red-500/20 text-red-400 rounded-full">🗑️</button>
+</div>
+</div>`).join("")||"<div class='text-center py-16 opacity-40'><div class='text-4xl'>📦</div><div class='text-[13px] mt-3'>ماكو منتجات حقيقية بعد<br>اضغط اضافة منتج حقيقي</div></div>";
 }
-function renderMini(){
-let arr=getP().slice(-5).reverse();
-if(!arr.length){arr=[{n:"متوفر شاحن لاسلكي 20W",s:450,c:"الكترونيات",whole:450,i:"https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400"},{n:"متوفر جيد 75% 85 د.إ",s:85,c:"الكترونيات",whole:85,i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"}];}
-document.getElementById("miniProducts").innerHTML=arr.map(p=>`
-<div class="flex items-center gap-2 py-2 border-b border-[#2a2750]/30 last:border-0">
-<img src="${p.i}" class="w-8 h-8 rounded-lg object-cover bg-white">
-<div class="flex-1 text-[10px]"><div class="font-bold truncate">${p.n}</div><div class="opacity-50 text-[9px]">${p.c}</div></div>
-<div class="text-[10px]">${p.s}</div>
-<div class="text-[10px] w-12 text-center">${p.whole} د.إ</div>
-<div class="text-[9px] bg-green-600 px-2 py-0.5 rounded-full">متوفر</div>
-</div>`).join("");
-}
-
-// chart
-const ctx=document.getElementById('salesChart').getContext('2d');
-new Chart(ctx,{type:'line',data:{labels:['يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','أكتوبر','نوفمبر'],datasets:[{data:[50,150,250,300,250,400,650],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,0.1)',tension:0.4,fill:true,pointBackgroundColor:'#a78bfa',pointRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false,color:'#2a2750'},ticks:{color:'#666',font:{size:9}}},y:{grid:{color:'#2a2750'},ticks:{color:'#666',font:{size:9}}}}}});
-
-render(); renderMini();
+checkAdmin(); render();
 </script>
 </body>
 </html>
