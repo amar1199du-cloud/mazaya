@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HEBA STORE</title>
+<title>HEBA STORE 👑</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
 <style>
@@ -11,32 +11,42 @@ body{background:#0a0a0f;color:white}
 .glass{background:rgba(255,255,255,0.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.09)}
 .card-heba{background:linear-gradient(145deg,#1e1e2e,#171721);border:1px solid rgba(124,58,237,0.14)}
 .text-gradient{background:linear-gradient(90deg,#a78bfa,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.banner-heba{background:linear-gradient(135deg,#1e0f4a 0%,#3b1a8a 35%,#5b21b6 70%,#7c3aed 100%)}
+.banner-heba{background:linear-gradient(135deg,#1e0f4a 0%,#3b1a8a 35%,#5b21b6 70%,#7c3aed 100%);border:1px solid rgba(168,85,247,0.25)}
 input,select{background:#171721!important;border:1px solid rgba(255,255,255,0.1)!important;color:white!important}
 </style>
 </head>
 <body>
-<div class="max-w-[600px] mx-auto min-h-screen pb-20">
-<div class="sticky top-0 z-40 glass p-4 flex justify-between items-center">
-<div class="flex items-center gap-2.5"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ec4899] to-[#7c3aed] flex items-center justify-center font-black">H</div><div><div class="font-black text-[14px] text-gradient">HEBA STORE</div><div class="text-[8px] opacity-60">متجر هيبة 👑</div></div></div>
-<a href="admin.html" class="glass px-3 py-2 rounded-full text-[10px]">لوحة التحكم</a>
+<div class="max-w-[600px] mx-auto min-h-screen pb-24">
+<!-- هيدر القديم نفسه -->
+<div style="direction:ltr" class="sticky top-0 z-40 glass p-4 flex justify-between items-center">
+<div style="direction:rtl" class="flex items-center gap-2.5"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ec4899] to-[#7c3aed] flex items-center justify-center font-black">H</div><div><div class="font-black text-[14px] text-gradient">HEBA STORE</div><div class="text-[8px] opacity-60">متجر هيبة 👑</div></div></div>
+<div class="flex items-center gap-2"><a href="admin.html" class="glass px-3 py-2 rounded-full text-[10px] font-black">لوحة التحكم</a></div>
 </div>
+
 <div class="p-4 space-y-4">
-<div class="banner-heba rounded-[24px] p-5">
-<div class="font-black text-[18px]">HEBA STORE 👑</div>
-<div class="text-[11px] opacity-80 mt-1">1000 منتج - توصيل لكل العراق</div>
-<div class="flex gap-2 mt-3"><input id="searchInput" oninput="renderProducts()" placeholder="ابحث..." class="flex-1 p-3 rounded-full text-[11px]"><select id="catFilter" onchange="renderProducts()" class="p-3 rounded-full text-[11px] w-[120px]"><option value="all">الكل</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option></select></div>
-<div id="status" class="text-[9px] mt-2 opacity-60"></div>
+<!-- بانر القديم نفسه -->
+<div class="banner-heba rounded-[24px] p-5 relative overflow-hidden">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-[#ec4899]/20 rounded-full blur-2xl"></div>
+<div class="relative">
+<div class="font-black text-[20px]">HEBA STORE 👑</div>
+<div class="text-[11px] opacity-80 mt-1">أفخم المنتجات - توصيل لكل العراق</div>
+<div class="flex gap-2 mt-4"><input id="searchInput" oninput="renderProducts()" placeholder="ابحث عن منتج..." class="flex-1 p-3 rounded-full text-[11px]"><select id="catFilter" onchange="renderProducts()" class="p-3 rounded-full text-[11px] w-[130px]"><option value="all">الكل</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option></select></div>
+<div id="status" class="text-[9px] mt-3 opacity-60 bg-black/30 inline-block px-3 py-1 rounded-full"></div>
 </div>
+</div>
+
+<!-- شبكة المنتجات القديمة نفسها -->
 <div id="productsGrid" class="grid grid-cols-2 gap-3"></div>
 </div>
 </div>
+
 <script>
-// ماكو مثال - بس منتجاتك انت
+// بدون اي مثال - بس منتجاتك
 let defaultProducts=[];
 let mazayaDB=null;
 let remoteProducts=[];
 let allCache=[];
+
 function openMazayaDB(){return new Promise((res)=>{let r=indexedDB.open("mazaya1000",2);r.onupgradeneeded=e=>{let d=e.target.result;if(!d.objectStoreNames.contains("products")) d.createObjectStore("products",{keyPath:"id"});};r.onsuccess=e=>{mazayaDB=e.target.result;res(mazayaDB);};r.onerror=()=>res(null);});}
 async function getCustomFromDB(){try{await openMazayaDB();if(!mazayaDB)return[];return await new Promise((res)=>{let tx=mazayaDB.transaction("products","readonly");let s=tx.objectStore("products");let req=s.getAll();req.onsuccess=()=>res(req.result||[]);req.onerror=()=>res([]);});}catch(e){return[];}}
 async function getAllProducts(){
@@ -51,17 +61,25 @@ async function renderProducts(){
   let cat=document.getElementById("catFilter").value;
   let all=await getAllProducts();allCache=all;
   let filtered=all.filter(p=>{let matchQ=p.n.toLowerCase().includes(q);let matchC=cat=="all"||p.c==cat;return matchQ&&matchC;});
-  document.getElementById("status").innerText=`عندك ${all.length} منتج`;
+  document.getElementById("status").innerText=`عندك ${all.length} منتج - جاهز للعرض`;
   document.getElementById("productsGrid").innerHTML=filtered.map(p=>`
-  <div class="card-heba rounded-[20px] overflow-hidden">
-    <div class="relative"><img src="${p.i}" class="w-full h-[160px] object-cover bg-[#0f0f17]"><div class="absolute top-2 left-2 bg-black/70 text-[8px] px-2 py-1 rounded-full">${p.c}</div></div>
-    <div class="p-3"><div class="font-black text-[11px] leading-[1.3] h-[32px] overflow-hidden">${p.n}</div><div class="flex justify-between items-center mt-2"><div class="font-black text-[#a78bfa] text-[13px]">${p.sell.toLocaleString()} د.ع</div><div class="text-[8px] opacity-50">${p.s} متوفر</div></div><button onclick="openProduct(${p.id})" class="w-full mt-2 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-2.5 rounded-full font-black text-[11px]">عرض</button></div>
-  </div>`).join("")||`<div class="col-span-2 text-center py-20 opacity-40">بعدك ما ضفت منتجات - روح للوحة التحكم</div>`;
+  <div class="card-heba rounded-[20px] overflow-hidden hover:scale-[1.02] transition">
+    <div class="relative"><img src="${p.i}" loading="lazy" class="w-full h-[170px] object-cover bg-[#0f0f17]"><div class="absolute top-2 left-2 bg-black/70 text-[8px] px-2 py-1 rounded-full">${p.c}</div><div class="absolute bottom-2 right-2 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] text-[8px] px-2 py-1 rounded-full font-black">${p.s} متوفر</div></div>
+    <div class="p-3"><div class="font-black text-[11px] leading-[1.3] h-[34px] overflow-hidden">${p.n}</div><div class="flex justify-between items-center mt-2"><div class="font-black text-[#a78bfa] text-[13px]">${p.sell.toLocaleString()} د.ع</div><div class="text-[7px] opacity-40">ربح ${(p.sell-p.whole).toLocaleString()}</div></div><button onclick="openProduct(${p.id})" class="w-full mt-3 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-2.5 rounded-full font-black text-[11px] shadow-lg shadow-[#7c3aed]/20">عرض التفاصيل 👁️</button></div>
+  </div>`).join("")||`<div class="col-span-2 text-center py-20 opacity-40"><div class="text-[40px]">📦</div><div class="text-[12px] mt-2">ما كو منتجات - ضيف من لوحة التحكم</div></div>`;
 }
-function openProduct(id){let p=allCache.find(x=>x.id==id);if(!p)return;let msg=`اريد ${p.n}`;window.open(`https://wa.me/9647700000000?text=${encodeURIComponent(msg)}`,"_blank");}
-fetch('./products.json?t='+Date.now()).then(r=>r.json()).then(d=>{remoteProducts=d;renderProducts();}).catch(()=>{});
+function openProduct(id){let p=allCache.find(x=>x.id==id);if(!p)return;let msg=`مرحبا اريد ${p.n} - السعر ${p.sell}`;window.open(`https://wa.me/9647700000000?text=${encodeURIComponent(msg)}`,"_blank");}
+// يقرا من products.json حتى الكل يشوف
+fetch('./products.json?t='+Date.now()).then(r=>r.json()).then(d=>{remoteProducts=d;renderProducts();}).catch(()=>{renderProducts();});
 openMazayaDB().then(()=>renderProducts());
 renderProducts();
+
+// مسح المثال من الذاكرة تلقائيا اول مرة
+if(!localStorage.getItem("cleaned_v2")){
+  localStorage.removeItem("mazaya_custom_products");
+  indexedDB.deleteDatabase("mazaya1000");
+  localStorage.setItem("cleaned_v2","1");
+}
 </script>
 </body>
 </html>
