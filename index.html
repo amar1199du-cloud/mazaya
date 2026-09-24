@@ -1,47 +1,88 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HEBA STORE 👑</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>مزايا - HEBA STORE 👑</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{font-family:Cairo}
-body{background:#0a0a0f;color:white}
-.glass{background:rgba(255,255,255,0.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.09)}
-.card-heba{background:linear-gradient(145deg,#1e1e2e,#171721);border:1px solid rgba(124,58,237,0.14)}
+*{font-family:'Cairo',sans-serif}
+body{background:#0a0a0f;color:white;overflow-x:hidden}
+.glass{background:rgba(255,255,255,0.06);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.08)}
+.card-heba{background:linear-gradient(145deg,#1e1e2e,#15151f);border:1px solid rgba(124,58,237,0.15);border-radius:20px}
+.banner-heba{background:linear-gradient(135deg,#2a1450 0%,#3d1e7a 25%,#5b2cc0 60%,#7c3aed 100%);border:1px solid rgba(168,85,247,0.25)}
 .text-gradient{background:linear-gradient(90deg,#a78bfa,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.banner-heba{background:linear-gradient(135deg,#1e0f4a 0%,#3b1a8a 35%,#5b21b6 70%,#7c3aed 100%);border:1px solid rgba(168,85,247,0.25)}
-input,select{background:#171721!important;border:1px solid rgba(255,255,255,0.1)!important;color:white!important}
+.cat-active{background:linear-gradient(135deg,#a855f7,#ec4899);color:white;box-shadow:0 8px 20px rgba(168,85,247,0.35)}
+.profit-badge{background:linear-gradient(90deg,#ec4899,#a855f7)}
+.bottom-nav{background:rgba(20,20,30,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}
+input{background:#171721!important;border:1px solid rgba(255,255,255,0.08)!important;color:white!important}
+.no-scrollbar::-webkit-scrollbar{display:none}
 </style>
 </head>
 <body>
-<div class="max-w-[600px] mx-auto min-h-screen pb-24">
-<!-- هيدر القديم نفسه -->
-<div style="direction:ltr" class="sticky top-0 z-40 glass p-4 flex justify-between items-center">
-<div style="direction:rtl" class="flex items-center gap-2.5"><div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ec4899] to-[#7c3aed] flex items-center justify-center font-black">H</div><div><div class="font-black text-[14px] text-gradient">HEBA STORE</div><div class="text-[8px] opacity-60">متجر هيبة 👑</div></div></div>
-<div class="flex items-center gap-2"><a href="admin.html" class="glass px-3 py-2 rounded-full text-[10px] font-black">لوحة التحكم</a></div>
+<div class="max-w-[520px] mx-auto min-h-screen pb-28 relative">
+
+<!-- هيدر مثل الصورة -->
+<div style="direction:ltr" class="sticky top-0 z-40 glass p-3 px-4 flex justify-between items-center">
+  <div style="direction:rtl" class="flex items-center gap-2.5">
+    <div class="flex items-center gap-2">
+      <div class="w-11 h-11 rounded-[14px] bg-gradient-to-br from-[#ec4899] to-[#a855f7] flex items-center justify-center font-black text-[16px] shadow-lg">M</div>
+      <div class="text-right leading-[1.1]"><div class="font-black text-[13px] text-[#d8b4fe]">مزايا</div><div class="font-bold text-[8px] opacity-60 tracking-widest">HEBA STORE</div></div>
+    </div>
+  </div>
+  <div style="direction:rtl" class="flex items-center gap-2">
+    <div class="w-9 h-9 rounded-full bg-[#1e1e2e] border border-white/10 flex items-center justify-center text-[14px]">👤</div>
+    <div class="text-right leading-[1.1]"><div class="font-black text-[12px]">عمار</div><div class="text-[9px] opacity-50">اخلا 👑</div></div>
+  </div>
 </div>
 
 <div class="p-4 space-y-4">
-<!-- بانر القديم نفسه -->
-<div class="banner-heba rounded-[24px] p-5 relative overflow-hidden">
-<div class="absolute -top-10 -left-10 w-40 h-40 bg-[#ec4899]/20 rounded-full blur-2xl"></div>
-<div class="relative">
-<div class="font-black text-[20px]">HEBA STORE 👑</div>
-<div class="text-[11px] opacity-80 mt-1">أفخم المنتجات - توصيل لكل العراق</div>
-<div class="flex gap-2 mt-4"><input id="searchInput" oninput="renderProducts()" placeholder="ابحث عن منتج..." class="flex-1 p-3 rounded-full text-[11px]"><select id="catFilter" onchange="renderProducts()" class="p-3 rounded-full text-[11px] w-[130px]"><option value="all">الكل</option><option>الكترونيات</option><option>اجهزة المنزل</option><option>اجهزة المطبخ</option><option>منتجات العنايه</option><option>العاب</option><option>ادوات السيارات</option></select></div>
-<div id="status" class="text-[9px] mt-3 opacity-60 bg-black/30 inline-block px-3 py-1 rounded-full"></div>
-</div>
+  <!-- بحث -->
+  <div class="relative">
+    <input id="searchInput" oninput="renderProducts()" placeholder="إبحث عن الهيبة..." class="w-full p-3.5 pr-12 rounded-full text-[12px] outline-none">
+    <div class="absolute right-1 top-1 w-9 h-9 rounded-full bg-gradient-to-br from-[#a855f7] to-[#ec4899] flex items-center justify-center">🔍</div>
+  </div>
+
+  <!-- بانر عروض الهيبة اليوم - نفس الصورة -->
+  <div class="banner-heba rounded-[22px] p-5 relative overflow-hidden">
+    <div class="absolute -top-16 -left-10 w-56 h-56 bg-[#ec4899]/20 rounded-full blur-3xl"></div>
+    <div class="relative flex justify-between items-center">
+      <div class="text-right">
+        <div class="font-black text-[16px] flex items-center gap-2">🔥 عروض الهيبة اليوم</div>
+        <div class="text-[11px] opacity-80 mt-1">خصم يوصل 40% + ربحك مضمون</div>
+        <div class="mt-3 bg-white text-[#3b1a8a] text-[10px] font-black px-4 py-2 rounded-full inline-flex items-center gap-1">🚚 شحن مجاني لكل العراق</div>
+      </div>
+      <div class="text-[52px] drop-shadow-xl">👑</div>
+    </div>
+  </div>
+
+  <!-- الفئات الملكية -->
+  <div class="space-y-3">
+    <div class="flex justify-between items-center"><div class="font-black text-[13px]">الفئات الملكية</div><div class="glass px-3 py-1 rounded-full text-[10px]"><span id="countBadge">0</span> منتج</div></div>
+    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+      <button onclick="setCat('all')" id="cat-all" class="cat-active whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-black">الكل</button>
+      <button onclick="setCat('الكترونيات')" id="cat-الكترونيات" class="glass whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-bold">الكترونيات</button>
+      <button onclick="setCat('اجهزة المنزل')" id="cat-اجهزة المنزل" class="glass whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-bold">اجهزة المنزل</button>
+      <button onclick="setCat('اجهزة المطبخ')" id="cat-اجهزة المطبخ" class="glass whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-bold">اجهزة المطبخ</button>
+      <button onclick="setCat('منتجات العنايه')" class="glass whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-bold">منتجات العنايه</button>
+    </div>
+  </div>
+
+  <!-- شبكة المنتجات نفس الصورة -->
+  <div id="productsGrid" class="grid grid-cols-2 gap-3"></div>
 </div>
 
-<!-- شبكة المنتجات القديمة نفسها -->
-<div id="productsGrid" class="grid grid-cols-2 gap-3"></div>
+<!-- بوتوم ناف مثل الصورة -->
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-[480px] bottom-nav rounded-[20px] p-2 flex justify-around items-center z-50">
+  <button onclick="location.href='admin.html'" class="flex flex-col items-center gap-1 opacity-50"><div class="text-[18px]">⚙️</div><div class="text-[9px] font-bold">الاعدادات</div></button>
+  <button class="flex flex-col items-center gap-1 opacity-50 relative"><div class="text-[18px]">🛒</div><div class="text-[9px] font-bold">السلة</div><div id="cartCount" class="absolute -top-1 -right-2 bg-[#a855f7] w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-black">0</div></button>
+  <button class="bg-white text-black px-7 py-2 rounded-[14px] flex flex-col items-center"><div class="text-[16px]">🏠</div><div class="text-[9px] font-black">الرئيسية</div></button>
 </div>
+
 </div>
 
 <script>
-// بدون اي مثال - بس منتجاتك
+let currentCat='all';
 let defaultProducts=[];
 let mazayaDB=null;
 let remoteProducts=[];
@@ -56,30 +97,42 @@ async function getAllProducts(){
   let map=new Map();merged.forEach(p=>{map.set(p.id,p);});
   return Array.from(map.values());
 }
+function setCat(c){
+  currentCat=c;
+  document.querySelectorAll('[id^="cat-"]').forEach(b=>{b.className="glass whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-bold";});
+  let btn=document.getElementById('cat-'+c);
+  if(btn) btn.className="cat-active whitespace-nowrap px-5 py-2.5 rounded-full text-[11px] font-black";
+  renderProducts();
+}
 async function renderProducts(){
   let q=(document.getElementById("searchInput").value||"").toLowerCase();
-  let cat=document.getElementById("catFilter").value;
   let all=await getAllProducts();allCache=all;
-  let filtered=all.filter(p=>{let matchQ=p.n.toLowerCase().includes(q);let matchC=cat=="all"||p.c==cat;return matchQ&&matchC;});
-  document.getElementById("status").innerText=`عندك ${all.length} منتج - جاهز للعرض`;
-  document.getElementById("productsGrid").innerHTML=filtered.map(p=>`
-  <div class="card-heba rounded-[20px] overflow-hidden hover:scale-[1.02] transition">
-    <div class="relative"><img src="${p.i}" loading="lazy" class="w-full h-[170px] object-cover bg-[#0f0f17]"><div class="absolute top-2 left-2 bg-black/70 text-[8px] px-2 py-1 rounded-full">${p.c}</div><div class="absolute bottom-2 right-2 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] text-[8px] px-2 py-1 rounded-full font-black">${p.s} متوفر</div></div>
-    <div class="p-3"><div class="font-black text-[11px] leading-[1.3] h-[34px] overflow-hidden">${p.n}</div><div class="flex justify-between items-center mt-2"><div class="font-black text-[#a78bfa] text-[13px]">${p.sell.toLocaleString()} د.ع</div><div class="text-[7px] opacity-40">ربح ${(p.sell-p.whole).toLocaleString()}</div></div><button onclick="openProduct(${p.id})" class="w-full mt-3 bg-gradient-to-r from-[#7c3aed] to-[#ec4899] py-2.5 rounded-full font-black text-[11px] shadow-lg shadow-[#7c3aed]/20">عرض التفاصيل 👁️</button></div>
-  </div>`).join("")||`<div class="col-span-2 text-center py-20 opacity-40"><div class="text-[40px]">📦</div><div class="text-[12px] mt-2">ما كو منتجات - ضيف من لوحة التحكم</div></div>`;
+  let filtered=all.filter(p=>{let mq=!q||p.n.toLowerCase().includes(q);let mc=currentCat=='all'||p.c==currentCat;return mq&&mc;});
+  document.getElementById("countBadge").innerText=filtered.length;
+  document.getElementById("productsGrid").innerHTML=filtered.map(p=>{
+    let profit=p.sell-(p.whole||p.sell);
+    return `
+    <div class="card-heba overflow-hidden">
+      <div class="relative">
+        <img src="${p.i}" loading="lazy" class="w-full h-[150px] object-cover bg-[#0f0f17]">
+        <div class="absolute top-2 left-2 profit-badge text-[8px] font-black px-2.5 py-1 rounded-full">ربح ${profit.toLocaleString()}</div>
+        <div class="absolute top-2 right-2 glass text-[8px] px-2.5 py-1 rounded-full">${p.c}</div>
+        <div class="absolute bottom-2 left-2 bg-black/70 text-[8px] px-2 py-1 rounded-full">📦 ${p.s||50} قطعة</div>
+      </div>
+      <div class="p-3">
+        <div class="font-bold text-[11px] leading-[1.3] h-[32px] overflow-hidden text-right">${p.n}</div>
+        <div class="flex justify-between items-center mt-3">
+          <div><div class="text-[8px] opacity-50">جملة</div><div class="font-black text-[13px]">${(p.whole||p.sell).toLocaleString()} د.ع</div></div>
+          <button onclick="addToCart(${p.id})" class="bg-white text-black text-[10px] font-black px-4 py-2 rounded-full">+ سلة</button>
+        </div>
+      </div>
+    </div>`;
+  }).join("")||`<div class="col-span-2 text-center py-16 opacity-30"><div class="text-[40px]">👑</div><div class="text-[11px] mt-2">ما كو منتجات - ضيف من لوحة التحكم</div></div>`;
 }
-function openProduct(id){let p=allCache.find(x=>x.id==id);if(!p)return;let msg=`مرحبا اريد ${p.n} - السعر ${p.sell}`;window.open(`https://wa.me/9647700000000?text=${encodeURIComponent(msg)}`,"_blank");}
-// يقرا من products.json حتى الكل يشوف
-fetch('./products.json?t='+Date.now()).then(r=>r.json()).then(d=>{remoteProducts=d;renderProducts();}).catch(()=>{renderProducts();});
+function addToCart(id){let p=allCache.find(x=>x.id==id);if(!p)return;let msg=`اريد ${p.n}`;window.open(`https://wa.me/9647700000000?text=${encodeURIComponent(msg)}`,"_blank");}
+fetch('./products.json?t='+Date.now()).then(r=>r.json()).then(d=>{remoteProducts=d;renderProducts();}).catch(()=>renderProducts());
 openMazayaDB().then(()=>renderProducts());
 renderProducts();
-
-// مسح المثال من الذاكرة تلقائيا اول مرة
-if(!localStorage.getItem("cleaned_v2")){
-  localStorage.removeItem("mazaya_custom_products");
-  indexedDB.deleteDatabase("mazaya1000");
-  localStorage.setItem("cleaned_v2","1");
-}
 </script>
 </body>
 </html>
